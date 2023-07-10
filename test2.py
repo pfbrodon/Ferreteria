@@ -26,7 +26,7 @@ tree.heading('Correo', text='Correo')
 
 # Agregar filas de datos
 tree.insert('', 'end', values=('Juan', '25', 'juan@example.com'))
-tree.insert('', 'end', values=('María', '30', 'maria@example.com'))
+tree.insert('', 'end', values=('Maria', '30', 'maria@example.com'))
 tree.insert('', 'end', values=('Pedro', '28', 'pedro@example.com'))
 
 # Asociar el evento de selección al TreeView
