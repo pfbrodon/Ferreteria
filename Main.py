@@ -236,17 +236,17 @@ descripcionBusq=()
 itemTabla=()
 sumaStock=()
 #ENTRY#############################################################################################
-entradaCodigo=Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
+entradaCodigo=ttk.Entry(ventana,font=("Arial",9),width=7 ,justify="right",textvariable=codigoBusq)
 entradaCodigo.place(x=110,y=50)
-entradaCategoria=Entry(ventana,font=("Arial",10),width=12, textvariable=itemTabla)
+entradaCategoria=ttk.Entry(ventana,font=("Arial",9),width=12, textvariable=itemTabla)
 entradaCategoria.place(x=110,y=80)
-entradaDescripcion=Entry(ventana,font=("Arial",10),width=40, textvariable=itemTabla)
+entradaDescripcion=ttk.Entry(ventana,font=("Arial",9),width=40, textvariable=itemTabla)
 entradaDescripcion.place(x=110,y=110)
-entradaCantidad=Entry(ventana,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
+entradaCantidad=ttk.Entry(ventana,font=("Arial",9),width=5,justify="right",textvariable=itemTabla)
 entradaCantidad.place(x=110,y=140)
-entradaPrecio=Entry(ventana,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
+entradaPrecio=ttk.Entry(ventana,font=("Arial",9),width=10,justify="right", textvariable=itemTabla)
 entradaPrecio.place(x=110,y=170)
-entradaPrecioVP=Entry(ventana,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
+entradaPrecioVP=ttk.Entry(ventana,font=("Arial",9),width=10,justify="right",textvariable=itemTabla)
 entradaPrecioVP.place(x=110,y=200)
 
 
@@ -254,56 +254,64 @@ entradaPrecioVP.place(x=110,y=200)
 
 #ETIQUETAS#####################################################################################
 
-lbl1=Label(ventana, text='VALOR DE STOCK EXISTENTE:')
+lbl1=ttk.Label(ventana, text='VALOR DE STOCK EXISTENTE:')
 lbl1.place(x=10,y=10)
-lbl10=Label(ventana, text='')
+lbl10=ttk.Label(ventana, text='')
 lbl10.place(x=168,y=8)
 ########################################################
-lblCodigo=Label(ventana, text='CODIGO:')
+lblCodigo=ttk.Label(ventana, text='CODIGO:')
 lblCodigo.place(x=10,y=50)
-lblCategoria=Label(ventana, text='CATEGORIA:')
+lblCategoria=ttk.Label(ventana, text='CATEGORIA:')
 lblCategoria.place(x=10,y=80)
-lblDescripcion=Label(ventana, text='DESCRIPCION:')
+lblDescripcion=ttk.Label(ventana, text='DESCRIPCION:')
 lblDescripcion.place(x=10,y=110)
-lblCantidad=Label(ventana, text='CANTIDAD:')
+lblCantidad=ttk.Label(ventana, text='CANTIDAD:')
 lblCantidad.place(x=10,y=140)
-lblPrecio=Label(ventana, text='PRECIO COSTO:')
+lblPrecio=ttk.Label(ventana, text='PRECIO COSTO:')
 lblPrecio.place(x=10,y=170)
-lblPrecioVP=Label(ventana, text='PRECIO VP:')
+lblPrecioVP=ttk.Label(ventana, text='PRECIO VP:')
 lblPrecioVP.place(x=10,y=200)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarValorizar():
     btn1.invoke()
 def activarCargaLPrecios():
     btn4.invoke()
+####DEFINIR ESTILOS DE BOTONES###################################################################
+style= ttk.Style()
+style.configure("EstiloBoton1.TButton", background="grey", foreground="black", font=("Arial", 9, "bold"))
+style.configure("EstiloBoton2.TButton", background="red", foreground="black", font=("Arial", 9, "bold"))
+style.configure("EstiloBoton3.TButton", background="blue", foreground="black", font=("Arial", 9, "bold"))
+style.configure("EstiloBoton4.TButton", background="green", foreground="black", font=("Arial", 9, "bold"))
+style.configure("EstiloBoton5.TButton", background="yellow", foreground="black", font=("Arial", 9, "bold"))
+
 #BOTONES#########################################################################################
-btn1=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3,  text='F1-VALORIZAR', command=valorizarStock)
+btn1=ttk.Button(ventana, text='F1-VALORIZAR', command=valorizarStock, style='EstiloBoton1.TButton',width=25)
 btn1.place(x=520,y=10)
 #btn1.config(font=11)
 #######################################
-btn2=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3,  text='BUSCAR CODIGO', command=busquedaCodigo)
+btn2=ttk.Button(ventana, text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBoton1.TButton',width=25)
 btn2.place(x=520,y=90)
 #######################################
-btn3=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3 ,text='BUSCAR DESCRIPCION', command=busquedaDescripcion)
+btn3=ttk.Button(ventana,text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBoton1.TButton',width=25)
 btn3.place(x=520,y=50)
 #######################################
-btn4=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla)
+btn4=ttk.Button(ventana, text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBoton1.TButton',width=25)
 btn4.place(x=520,y=170)
 #######################################
-btnModificar=Button(ventana, font=("Arial",9),state=DISABLED,fg="black",border= 3, width=25,background="light yellow" ,text='MODIFICAR PRODUCTO', command=modificarProducto)
+btnModificar=ttk.Button(ventana,text='MODIFICAR PRODUCTO', state=DISABLED, command=modificarProducto,style='EstiloBoton5.TButton',width=25)
 btnModificar.place(x=320,y=10)
 #mostrarModificar(False)
 #######################################
-btn6=Button(ventana, font=("Arial",9),fg="black",border= 3,width=25 ,background="light green" ,text='ALTA PRODUCTO', command=moduloCarga)
+btn6=ttk.Button(ventana,text='ALTA PRODUCTO', command=moduloCarga,style='EstiloBoton4.TButton',width=25)
 btn6.place(x=320,y=170)
 #######################################
-btn7=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25, background="red"  ,text='BAJA PRODUCTO', command=borrarProducto)
+btn7=ttk.Button(ventana,text='BAJA PRODUCTO', command=borrarProducto,style='EstiloBoton2.TButton',width=25)
 btn7.place(x=320,y=210)
 #######################################
-btn8=Button(ventana, font=("Arial",9), fg="black",width=25,border= 3,  text='LIMPIAR ENTRADA', command=limpiarEntry)
+btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBoton1.TButton',width=25)
 btn8.place(x=520,y=210)
 #######################################
-btn9=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='EXPORTAR', command=exportatExcel)
+btn9=ttk.Button(ventana, text='EXPORTAR', command=exportatExcel,style='EstiloBoton1.TButton',width=25)
 btn9.place(x=520,y=130)
 #######################################
 #btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
