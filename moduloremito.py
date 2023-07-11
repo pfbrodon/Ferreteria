@@ -14,20 +14,23 @@ dirDeTrabajo = os.path.dirname(__file__)
 os.chdir(dirDeTrabajo)
 ###########################################################################
 #CONFIGURACION INICIAL VENTANA PRINCIPAL
-ventana=Tk()
-ventana.geometry("720x780")                                                    
-ventana.title("GENERACION DE REMITOS")
+ventana=tk.Tk()
+ventana.geometry("720x680+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
+ventana.title("GENERACION DE REMITOS")#TITULO
+ventana.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
+ventana.configure(background="lightblue")#COLOR DE FONDO DE VENTANA
 ventana.bind('<F1>', lambda event: activarValorizar())
 ventana.bind('<F2>', lambda event: activarCargaLPrecios())
 
 #CREACION DE UN MARCO#########################################
-cuadro1=Frame(ventana,width=300,height=100,highlightthickness=2)
-cuadro1.place(x=200,y=180)
-
+cuadro1=tk.Frame(ventana,width=400,height=150,borderwidth=1,
+        highlightthickness=1,
+        highlightbackground="lightblue",
+        bg='lightblue',padx=1,pady=1)
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
 
-cuadro1=Frame(ventana,width=500,height=400)
+cuadro1=Frame(ventana,width=500,height=480)
 
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
 def formatoDecimal(value): 
@@ -200,36 +203,37 @@ descripcionBusq=()
 itemTabla=()
 sumaStock=()
 #ENTRY#############################################################################################
-entradaCodigo=ttk.Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
-entradaCodigo.place(x=110,y=50)
-entradaCategoria=ttk.Entry(ventana,font=("Arial",10),width=12, textvariable=itemTabla)
-entradaCategoria.place(x=110,y=80)
-entradaDescripcion=ttk.Entry(ventana,font=("Arial",10),width=40, textvariable=itemTabla)
-entradaDescripcion.place(x=110,y=110)
-entradaCantidad=ttk.Entry(ventana,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
-entradaCantidad.place(x=110,y=140)
-entradaPrecio=ttk.Entry(ventana,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
-entradaPrecio.place(x=110,y=170)
-entradaPrecioVP=ttk.Entry(ventana,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
-entradaPrecioVP.place(x=110,y=200)
+varUbicacion=ventana
+entradaCodigo=ttk.Entry(varUbicacion,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
+entradaCodigo.place(x=65,y=48)
+entradaCategoria=ttk.Entry(varUbicacion,font=("Arial",10),width=12, textvariable=itemTabla)
+entradaCategoria.place(x=200,y=48)
+entradaDescripcion=ttk.Entry(varUbicacion,font=("Arial",10),width=50, textvariable=itemTabla)
+entradaDescripcion.place(x=100,y=78)
+entradaCantidad=ttk.Entry(varUbicacion,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
+entradaCantidad.place(x=370,y=48)
+entradaPrecio=ttk.Entry(varUbicacion,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
+entradaPrecio.place(x=110,y=108)
+entradaPrecioVP=ttk.Entry(varUbicacion,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
+entradaPrecioVP.place(x=290,y=108)
 #ETIQUETAS#####################################################################################
-lbl1=Label(ventana, text='VALOR DE STOCK EXISTENTE:')
+lbl1=Label(ventana, text='VALOR DE STOCK EXISTENTE:',background='lightblue')
 lbl1.place(x=10,y=10)
 lbl10=Label(ventana, text='')
 lbl10.place(x=168,y=8)
 ########################################################
-lblCodigo=ttk.Label(ventana, text='CODIGO:')
+lblCodigo=ttk.Label(ventana, text='CODIGO:',background='lightblue')
 lblCodigo.place(x=10,y=50)
-lblCategoria=Label(ventana, text='CATEGORIA:')
-lblCategoria.place(x=10,y=80)
-lblDescripcion=Label(ventana, text='DESCRIPCION:')
-lblDescripcion.place(x=10,y=110)
-lblCantidad=Label(ventana, text='CANTIDAD:')
-lblCantidad.place(x=10,y=140)
-lblPrecio=Label(ventana, text='PRECIO COSTO:')
-lblPrecio.place(x=10,y=170)
-lblPrecioVP=Label(ventana, text='PRECIO VP:')
-lblPrecioVP.place(x=10,y=200)
+lblCategoria=Label(ventana, text='CATEGORIA:',background='lightblue')
+lblCategoria.place(x=125,y=50)
+lblDescripcion=Label(ventana, text='DESCRIPCION:',background='lightblue')
+lblDescripcion.place(x=10,y=80)
+lblCantidad=Label(ventana, text='CANTIDAD:',background='lightblue')
+lblCantidad.place(x=300,y=50)
+lblPrecio=Label(ventana, text='PRECIO COSTO:',background='lightblue')
+lblPrecio.place(x=10,y=110)
+lblPrecioVP=Label(ventana, text='PRECIO VP:',background='lightblue')
+lblPrecioVP.place(x=220,y=110)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarValorizar():
     btn1.invoke()
@@ -237,27 +241,27 @@ def activarCargaLPrecios():
     btn4.invoke()
 #BOTONES#########################################################################################
 style= ttk.Style()
-style.configure("EstiloBoton1.TButton", background="red", foreground="black", font=("Arial", 12, "bold"))
-style.configure("EstiloBoton2.TButton", background="blue", foreground="black", font=("Arial", 12, "bold"))
+style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
+style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
 
-btn1=ttk.Button(ventana,text='INSERTAR',command=insertarTablaRemito,style='EstiloBoton1.TButton')
-btn1.place(x=520,y=10)
+btn1=ttk.Button(ventana,text='INSERTAR',command=insertarTablaRemito,style='EstiloBotonRemito1.TButton',width=25)
+btn1.place(x=520,y=145)
 #######################################
-btn2=ttk.Button(ventana,  text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBoton2.TButton')
+btn2=ttk.Button(ventana,  text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBotonRemito2.TButton',width=25)
 btn2.place(x=520,y=90)
 #######################################
-btn3=ttk.Button(ventana, text='BUSCAR DESCRIPCION', command=busquedaDescripcion)
+btn3=ttk.Button(ventana, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBotonRemito2.TButton',width=25)
 btn3.place(x=520,y=50)
 #######################################
-btn4=ttk.Button(ventana,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla)
-btn4.place(x=520,y=170)
+btn4=ttk.Button(ventana,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBotonRemito2.TButton')
+btn4.place(x=300,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ttk.Button(ventana ,text='BAJA PRODUCTO', command=borrarProducto)
-btn7.place(x=320,y=210)
+btn7=ttk.Button(ventana ,text='BAJA PRODUCTO', command=borrarProducto,style='EstiloBotonRemito2.TButton')
+btn7.place(x=10,y=145)
 #######################################
-btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry)
-btn8.place(x=520,y=210)
+btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
+btn8.place(x=150,y=145)
 #######################################
 #btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
 #btn10.place(x=520,y=210)
@@ -266,7 +270,7 @@ btn8.place(x=520,y=210)
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
 tablaFerreteria=ttk.Treeview(height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
-tablaFerreteria.place(x=10,y=250,width=700,height=150)
+tablaFerreteria.place(x=10,y=190,width=700,height=150)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
 tablaFerreteria.column('#1', width=40)
@@ -285,7 +289,7 @@ tablaFerreteria.bind("<<TreeviewSelect>>", capturaSeleccion)
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
 tablaRemito=ttk.Treeview(height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
-tablaRemito.place(x=10,y=400,width=700,height=250)
+tablaRemito.place(x=10,y=360,width=700,height=300)
 tablaRemito.column('#0', width=20,anchor='e')
 tablaRemito.heading('#0',text="CODIGO",anchor='center',)
 tablaRemito.column('#1', width=40)

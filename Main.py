@@ -16,20 +16,22 @@ dirDeTrabajo = os.path.dirname(__file__)
 os.chdir(dirDeTrabajo)
 ###########################################################################
 #CONFIGURACION INICIAL VENTANA PRINCIPAL
-ventana=Tk()
-ventana.geometry("720x680")                                                    
-ventana.title("CONTROL DE INVENTARIO")
+ventana=tk.Tk()
+ventana.geometry("720x680+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
+ventana.title("CONTROL DE INVENTARIO")#TITULO
+ventana.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
+ventana.configure(background="lightblue")#COLOR DE FONDO DE VENTANA
 ventana.bind('<F1>', lambda event: activarValorizar())
 ventana.bind('<F2>', lambda event: activarCargaLPrecios())
 
 #CREACION DE UN MARCO#########################################
-cuadro1=Frame(ventana,width=300,height=100,highlightthickness=2)
-cuadro1.place(x=200,y=180)
+#    cuadro1=tk.Frame(ventana,width=300,height=100,highlightthickness=2)
+ #   cuadro1.place(x=10,y=10)
 
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
 
-cuadro1=Frame(ventana,width=500,height=400)
+#cuadro1=Frame(ventana,width=500,height=400)
 
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
 def formatoDecimal(value): 
@@ -253,23 +255,24 @@ entradaPrecioVP.place(x=110,y=200)
 
 
 #ETIQUETAS#####################################################################################
-
-lbl1=ttk.Label(ventana, text='VALOR DE STOCK EXISTENTE:')
+#style= ttk.Style()
+#style.configure("EstiloBoton1.n", background="grey", foreground="black", font=("Arial", 9, "bold"))
+lbl1=ttk.Label(ventana, text='VALOR DE STOCK EXISTENTE:',background='lightblue')
 lbl1.place(x=10,y=10)
-lbl10=ttk.Label(ventana, text='')
+lbl10=ttk.Label(ventana, text='',background='lightblue')
 lbl10.place(x=168,y=8)
 ########################################################
-lblCodigo=ttk.Label(ventana, text='CODIGO:')
+lblCodigo=ttk.Label(ventana, text='CODIGO:',background='lightblue')
 lblCodigo.place(x=10,y=50)
-lblCategoria=ttk.Label(ventana, text='CATEGORIA:')
+lblCategoria=ttk.Label(ventana, text='CATEGORIA:',background='lightblue')
 lblCategoria.place(x=10,y=80)
-lblDescripcion=ttk.Label(ventana, text='DESCRIPCION:')
+lblDescripcion=ttk.Label(ventana, text='DESCRIPCION:',background='lightblue')
 lblDescripcion.place(x=10,y=110)
-lblCantidad=ttk.Label(ventana, text='CANTIDAD:')
+lblCantidad=ttk.Label(ventana, text='CANTIDAD:',background='lightblue')
 lblCantidad.place(x=10,y=140)
-lblPrecio=ttk.Label(ventana, text='PRECIO COSTO:')
+lblPrecio=ttk.Label(ventana, text='PRECIO COSTO:',background='lightblue')
 lblPrecio.place(x=10,y=170)
-lblPrecioVP=ttk.Label(ventana, text='PRECIO VP:')
+lblPrecioVP=ttk.Label(ventana, text='PRECIO VP:',background='lightblue')
 lblPrecioVP.place(x=10,y=200)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarValorizar():

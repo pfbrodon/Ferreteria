@@ -16,8 +16,10 @@ os.chdir(dirDeTrabajo)
 ####VENTANA DE MODULO DE CARGA#######################################
 def moduloCarga():
     ventana=Tk()
-    ventana.geometry("450x250")                                                    
+    ventana.geometry("450x250+40+40")                                                    
     ventana.title("CARGA DE PRODUCTOS")
+    ventana.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
+    ventana.configure(background="lightblue")#COLOR DE FONDO DE VENTANA
     #cuadro1=Frame(ventana,width=300,height=100,highlightthickness=2)
     ##HABILITA EL BOTON DE GUARDADO
     def mostrarGuardar(ver):
@@ -123,16 +125,16 @@ def moduloCarga():
         ventana.lift()#TRAE AL FRENTE LA VENTANA DE ALTA DESPUES DEL SHOWWARNING
     ####DEFINIR ESTILOS DE BOTONES###################################################################
     style= ttk.Style()
-    style.configure("EstiloBoton1.TButton", background="grey", foreground="black", font=("Arial", 10, "bold"))
-    style.configure("EstiloBoton2.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
-    style.configure("EstiloBoton3.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
-    style.configure("EstiloBoton4.TButton", background="green", foreground="black", font=("Arial", 11, "bold"))
-    style.configure("EstiloBoton5.TButton", background="yellow", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton1Carga.TButton", background="grey", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton2Carga.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton3Carga.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton4Carga.TButton", background="green", foreground="black", font=("Arial", 11, "bold"))
+    style.configure("EstiloBoton5Carga.TButton", background="yellow", foreground="black", font=("Arial", 10, "bold"))
 
     #BOTONES####################################################################################################################################################
-    botonAltaCodigo=ttk.Button(ventana,text='ALTA CODIGO', command=validarCodigo,style="EstiloBoton3.TButton",width=25)
+    botonAltaCodigo=ttk.Button(ventana,text='ALTA CODIGO', command=validarCodigo,style="EstiloBoton3Carga.TButton",width=25)
     botonAltaCodigo.place(x=230,y=23)
-    botonGuardar=ttk.Button(ventana,state=DISABLED,text='GUARDAR', command=guardarProducto,style="EstiloBoton4.TButton",width=25)
+    botonGuardar=ttk.Button(ventana,state=DISABLED,text='GUARDAR', command=guardarProducto,style="EstiloBoton4Carga.TButton",width=25)
     botonGuardar.place(x=220,y=180)
     #mostrarGuardar(False)
     
@@ -164,19 +166,19 @@ def moduloCarga():
     entradaPrecioVP['state'] = tk.DISABLED
     
     #ETIQUETAS#####################################################################################
-    lbl2=ttk.Label(ventana, text='CODIGO:')
+    lbl2=ttk.Label(ventana, text='CODIGO:',background='lightblue')
     lbl2.place(x=10,y=25)
-    lbl3=ttk.Label(ventana, text='CATEGORIA:')
+    lbl3=ttk.Label(ventana, text='CATEGORIA:',background='lightblue')
     lbl3.place(x=10,y=90)
-    lbl4=ttk.Label(ventana, text='DESCRIPCION:')
+    lbl4=ttk.Label(ventana, text='DESCRIPCION:',background='lightblue')
     lbl4.place(x=10,y=120)
-    lbl5=ttk.Label(ventana, text='CANTIDAD:')
+    lbl5=ttk.Label(ventana, text='CANTIDAD:',background='lightblue')
     lbl5.place(x=10,y=150)
-    lbl6=ttk.Label(ventana, text='PRECIO COSTO:')
+    lbl6=ttk.Label(ventana, text='PRECIO COSTO:',background='lightblue')
     lbl6.place(x=10,y=180)
-    lbl7=ttk.Label(ventana, text='PRECIO VP:')
+    lbl7=ttk.Label(ventana, text='PRECIO VP:',background='lightblue')
     lbl7.place(x=10,y=210)
 
 
     mainloop()
-moduloCarga()
+#moduloCarga()
