@@ -3,10 +3,8 @@ import tkinter as tk
 from tkinter import *
 from tkinter import Menu,ttk
 from tkinter import Tk, Label, Button, Entry, messagebox
-import openpyxl
 import os
 from tkinter.font import Font
-from ventanadealta import moduloCarga
 
 
 
@@ -17,7 +15,7 @@ os.chdir(dirDeTrabajo)
 ###########################################################################
 #CONFIGURACION INICIAL VENTANA PRINCIPAL
 ventana=Tk()
-ventana.geometry("720x680")                                                    
+ventana.geometry("720x780")                                                    
 ventana.title("GENERACION DE REMITOS")
 ventana.bind('<F1>', lambda event: activarValorizar())
 ventana.bind('<F2>', lambda event: activarCargaLPrecios())
@@ -34,16 +32,20 @@ cuadro1=Frame(ventana,width=500,height=400)
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
 def formatoDecimal(value): 
     return "{:,.2f}".format(value)  # Formato con 2 decimales y separadores de miles
-##HABILITA EL BOTON DE MODIFICAR
-def mostrarModificar(ver):
-    print("Mostrar",ver)
-    if ver:
-        btnModificar.place(x=520,y=50)
-    else:
-        btnModificar.place_forget()
-
 ##FUNCION DE LISTADO DE PRODUCTOS###########################################################
 def mostarTabla():
+    tablaFerreteria.delete(*tablaRemito.get_children())#borra el contenido de la tabla
+    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
+    cursor=mi_conexion.cursor() 
+    instruccion= f"SELECT * FROM stockFerreteria"
+    cursor.execute(instruccion)
+    datos=cursor.fetchall()
+    mi_conexion.commit()
+    mi_conexion.close()
+    for columna in datos:
+        tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
+    limpiarEntry()
+def mostarTablaRemito():
     tablaFerreteria.delete(*tablaRemito.get_children())#borra el contenido de la tabla
     mi_conexion= sqlite3.connect("basededatosPrueba.db")  
     cursor=mi_conexion.cursor() 
@@ -82,33 +84,6 @@ def busquedaDescripcion():#POR DESCRIPCION
     mi_conexion.close()
     for columna in datos:
         tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
-
-###FUNCION PARA MODIFICAR PRODUCTO############################################################################
-def modificarProducto():
-    tablaFerreteria.delete(*tablaRemito.get_children())#borra el contenido de la tabla
-    #####ACION DE VALORES A LAS VARIABLES
-    varCodigo=int(entradaCodigo.get())
-    varCategoria=entradaCategoria.get()
-    varDescripcion=entradaDescripcion.get()
-    varCantidad=int(entradaCantidad.get())
-    varPrecioUnit=float(entradaPrecio.get())
-    varPrecioVPublico=float(entradaPrecioVP.get()) 
-    ###CONEXION Y EJECUCION DE LA ORDEN EN SQLITE   
-    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
-    cursor=mi_conexion.cursor() 
-    instruccion= f"UPDATE stockFerreteria SET 'categoria' = '{varCategoria.upper()}', 'descripcion'='{varDescripcion.upper()}', 'cantidad'='{varCantidad}', 'precioUnit'='{varPrecioUnit:.2f}', 'precioVPublico'='{varPrecioVPublico}' WHERE codigo='{varCodigo}'"
-    cursor.execute(instruccion)
-    instruccion= f"SELECT * FROM stockFerreteria WHERE codigo='{varCodigo}'"
-    cursor.execute(instruccion)
-    datos=cursor.fetchall()
-    mi_conexion.commit()
-    mi_conexion.close()
-    #for columna in datos:
-    #    tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
-    limpiarEntry()
-    mostarTabla()
-    btnModificar.config(state=DISABLED)
-
 
 ###FUNCION DE BORRADO DE PRODUCTO############################################################################
 def borrarProducto():
@@ -149,9 +124,21 @@ def imprimirSeleccion(event):
         ######################################
         entradaCodigo.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCodigo.insert(0,tablaFerreteria.item(item)["text"])
-        btnModificar.config(state=NORMAL)
         #mostrarModificar(ver=True)
-        
+###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
+def insertarTablaRemito():
+    #tablaFerreteria.delete(*tablaFerreteria.get_children())#borra el contenido de la tabla
+    #####ASIGNACION DE VALORES A LAS VARIABLES
+    varCodigo=int(entradaCodigo.get())
+    varCategoria=entradaCategoria.get()
+    varDescripcion=entradaDescripcion.get()
+    varCantidad=int(entradaCantidad.get())
+    varPrecioUnit=float(entradaPrecio.get())
+    varPrecioVPublico=float(entradaPrecioVP.get()) 
+    tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico)))
+    limpiarEntry()
+    mostarTabla()
+       
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
 def capturaSeleccion(event):
     seleccion = tablaFerreteria.focus()  # Obtener el elemento seleccionado
@@ -206,29 +193,6 @@ def valorizarStock():
     print(f"El valor acumulado de todo su Stock es de: ${sumaStock:,.2f} ")##IMPRESION EN CONSOLA PARA REFERNCIA
     lbl10.config(text=f'$ {sumaStock:,}.-', font=fuenteNegrita)
     return sumaStock
-
-################################################################################ 
-##FUNCION PARA EXPORTAR A UN ARCHIVO EXCEL#####################################
-def exportatExcel():
-    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
-    cursor=mi_conexion.cursor() 
-    instruccion= f"SELECT * FROM stockFerreteria"
-    cursor.execute(instruccion)
-    datos=cursor.fetchall()
-    mi_conexion.commit()
-    mi_conexion.close()
-    libroExcel = openpyxl.Workbook()
-    hojaExcel = libroExcel.active
-    encabezados=['CODIGO','CATEGORIA','DESCRIPCION','CANTIDAD','PRECIO','PRECIO VP']
-    hojaExcel.append(encabezados)
-    for valor in datos:
-        hojaExcel.append(valor)
-    libroExcel.save('lista_Ferreteria.xlsx')
-    messagebox.showinfo( "","El Archivo se genero correctamente.")
-####################################################################################################    
-
-    
-    
 ##################################################################################################   
 #INICIALIZACION DE VARIABLES######################################################################
 codigoBusq=int()
@@ -236,7 +200,7 @@ descripcionBusq=()
 itemTabla=()
 sumaStock=()
 #ENTRY#############################################################################################
-entradaCodigo=Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
+entradaCodigo=ttk.Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
 entradaCodigo.place(x=110,y=50)
 entradaCategoria=Entry(ventana,font=("Arial",10),width=12, textvariable=itemTabla)
 entradaCategoria.place(x=110,y=80)
@@ -248,18 +212,13 @@ entradaPrecio=Entry(ventana,font=("Arial",10),width=10,justify="right", textvari
 entradaPrecio.place(x=110,y=170)
 entradaPrecioVP=Entry(ventana,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
 entradaPrecioVP.place(x=110,y=200)
-
-
-
-
 #ETIQUETAS#####################################################################################
-
 lbl1=Label(ventana, text='VALOR DE STOCK EXISTENTE:')
 lbl1.place(x=10,y=10)
 lbl10=Label(ventana, text='')
 lbl10.place(x=168,y=8)
 ########################################################
-lblCodigo=Label(ventana, text='CODIGO:')
+lblCodigo=ttk.Label(ventana, text='CODIGO:')
 lblCodigo.place(x=10,y=50)
 lblCategoria=Label(ventana, text='CATEGORIA:')
 lblCategoria.place(x=10,y=80)
@@ -277,34 +236,26 @@ def activarValorizar():
 def activarCargaLPrecios():
     btn4.invoke()
 #BOTONES#########################################################################################
-btn1=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3,  text='F1-VALORIZAR', command=valorizarStock)
+style= ttk.Style()
+style.configure("EstiloBoton.TButton", background="blue", foreground="black", font=("Arial", 12, "bold"))
+btn1=ttk.Button(ventana,text='INSERTAR',command=insertarTablaRemito,style='EstiloBoton.TButton')
 btn1.place(x=520,y=10)
-#btn1.config(font=11)
 #######################################
-btn2=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3,  text='BUSCAR CODIGO', command=busquedaCodigo)
+btn2=ttk.Button(ventana,  text='BUSCAR CODIGO', command=busquedaCodigo)
 btn2.place(x=520,y=90)
 #######################################
-btn3=Button(ventana, font=("Arial",9), fg="black",background="light blue", width=25,border= 3 ,text='BUSCAR DESCRIPCION', command=busquedaDescripcion)
+btn3=ttk.Button(ventana, text='BUSCAR DESCRIPCION', command=busquedaDescripcion)
 btn3.place(x=520,y=50)
 #######################################
 btn4=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla)
 btn4.place(x=520,y=170)
-#######################################
-btnModificar=Button(ventana, font=("Arial",9),state=DISABLED,fg="black",border= 3, width=25,background="light yellow" ,text='MODIFICAR PRODUCTO', command=modificarProducto)
-btnModificar.place(x=320,y=10)
-#mostrarModificar(False)
-#######################################
-btn6=Button(ventana, font=("Arial",9),fg="black",border= 3,width=25 ,background="light green" ,text='ALTA PRODUCTO', command=moduloCarga)
-btn6.place(x=320,y=170)
+# #mostrarModificar(False)
 #######################################
 btn7=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25, background="red"  ,text='BAJA PRODUCTO', command=borrarProducto)
 btn7.place(x=320,y=210)
 #######################################
 btn8=Button(ventana, font=("Arial",9), fg="black",width=25,border= 3,  text='LIMPIAR ENTRADA', command=limpiarEntry)
 btn8.place(x=520,y=210)
-#######################################
-btn9=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='EXPORTAR', command=exportatExcel)
-btn9.place(x=520,y=130)
 #######################################
 #btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
 #btn10.place(x=520,y=210)
