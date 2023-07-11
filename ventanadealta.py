@@ -123,17 +123,17 @@ def moduloCarga():
         ventana.lift()#TRAE AL FRENTE LA VENTANA DE ALTA DESPUES DEL SHOWWARNING
     ####DEFINIR ESTILOS DE BOTONES###################################################################
     style= ttk.Style()
-    style.configure("EstiloBoton1.TButton", background="grey", foreground="black", font=("Arial", 9, "bold"))
-    style.configure("EstiloBoton2.TButton", background="red", foreground="black", font=("Arial", 9, "bold"))
-    style.configure("EstiloBoton3.TButton", background="blue", foreground="black", font=("Arial", 9, "bold"))
-    style.configure("EstiloBoton4.TButton", background="green", foreground="black", font=("Arial", 9, "bold"))
-    style.configure("EstiloBoton5.TButton", background="yellow", foreground="black", font=("Arial", 9, "bold"))
+    style.configure("EstiloBoton1.TButton", background="grey", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton2.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton3.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
+    style.configure("EstiloBoton4.TButton", background="green", foreground="black", font=("Arial", 11, "bold"))
+    style.configure("EstiloBoton5.TButton", background="yellow", foreground="black", font=("Arial", 10, "bold"))
 
     #BOTONES####################################################################################################################################################
-    botonAltaCodigo=ttk.Button(ventana,text='ALTA CODIGO', command=validarCodigo,style="EstiloBoton3.TButton")
-    botonAltaCodigo.place(x=190,y=12)
-    botonGuardar=ttk.Button(ventana,state=DISABLED,text='GUARDAR', command=guardarProducto,style="EstiloBoton4.TButton")
-    botonGuardar.place(x=230,y=170)
+    botonAltaCodigo=ttk.Button(ventana,text='ALTA CODIGO', command=validarCodigo,style="EstiloBoton3.TButton",width=25)
+    botonAltaCodigo.place(x=230,y=23)
+    botonGuardar=ttk.Button(ventana,state=DISABLED,text='GUARDAR', command=guardarProducto,style="EstiloBoton4.TButton",width=25)
+    botonGuardar.place(x=220,y=180)
     #mostrarGuardar(False)
     
 
@@ -147,7 +147,7 @@ def moduloCarga():
     entradaCategoria.place(x=110,y=90)
     entradaCategoria['state'] = tk.DISABLED
     ###
-    entradaDescripcion=Entry(ventana,font=("Arial",10),width=40, textvariable=itemTabla)
+    entradaDescripcion=ttk.Entry(ventana,font=("Arial",10),width=40, textvariable=itemTabla)
     entradaDescripcion.place(x=110,y=120)
     entradaDescripcion['state'] = tk.DISABLED
     ##
