@@ -121,22 +121,29 @@ def moduloCarga():
         #mostrarGuardar(ver=False)
         entradaCodigo.focus()
         ventana.lift()#TRAE AL FRENTE LA VENTANA DE ALTA DESPUES DEL SHOWWARNING
+    ####DEFINIR ESTILOS DE BOTONES###################################################################
+    style= ttk.Style()
+    style.configure("EstiloBoton1.TButton", background="grey", foreground="black", font=("Arial", 9, "bold"))
+    style.configure("EstiloBoton2.TButton", background="red", foreground="black", font=("Arial", 9, "bold"))
+    style.configure("EstiloBoton3.TButton", background="blue", foreground="black", font=("Arial", 9, "bold"))
+    style.configure("EstiloBoton4.TButton", background="green", foreground="black", font=("Arial", 9, "bold"))
+    style.configure("EstiloBoton5.TButton", background="yellow", foreground="black", font=("Arial", 9, "bold"))
 
     #BOTONES####################################################################################################################################################
-    botonAltaCodigo=Button(ventana, font=("Arial",9,'bold'), fg="black",border= 2,width=25,height=2  ,text='ALTA CODIGO', command=validarCodigo)
+    botonAltaCodigo=ttk.Button(ventana,text='ALTA CODIGO', command=validarCodigo,style="EstiloBoton3.TButton")
     botonAltaCodigo.place(x=190,y=12)
-    botonGuardar=Button(ventana,state=DISABLED ,font=("Arial",9,'bold'), fg="black",border= 2,width=25,height=3,background="light green" ,text='GUARDAR', command=guardarProducto)
+    botonGuardar=ttk.Button(ventana,state=DISABLED,text='GUARDAR', command=guardarProducto,style="EstiloBoton4.TButton")
     botonGuardar.place(x=230,y=170)
     #mostrarGuardar(False)
     
 
     #ENTRY#############################################################################################
-    entradaCodigo=Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
+    entradaCodigo=ttk.Entry(ventana,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
     entradaCodigo.place(x=110,y=25)
     entradaCodigo.focus()
 
     ###
-    entradaCategoria=Entry(ventana,font=("Arial",10),width=12, textvariable=itemTabla)
+    entradaCategoria=ttk.Entry(ventana,font=("Arial",10),width=12, textvariable=itemTabla)
     entradaCategoria.place(x=110,y=90)
     entradaCategoria['state'] = tk.DISABLED
     ###
@@ -144,32 +151,32 @@ def moduloCarga():
     entradaDescripcion.place(x=110,y=120)
     entradaDescripcion['state'] = tk.DISABLED
     ##
-    entradaCantidad=Entry(ventana,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
+    entradaCantidad=ttk.Entry(ventana,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
     entradaCantidad.place(x=110,y=150)
     entradaCantidad['state'] = tk.DISABLED
     ##
-    entradaPrecio=Entry(ventana,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
+    entradaPrecio=ttk.Entry(ventana,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
     entradaPrecio.place(x=110,y=180)
     entradaPrecio['state'] = tk.DISABLED
     ##
-    entradaPrecioVP=Entry(ventana,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
+    entradaPrecioVP=ttk.Entry(ventana,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
     entradaPrecioVP.place(x=110,y=210)
     entradaPrecioVP['state'] = tk.DISABLED
     
     #ETIQUETAS#####################################################################################
-    lbl2=Label(ventana, text='CODIGO:')
+    lbl2=ttk.Label(ventana, text='CODIGO:')
     lbl2.place(x=10,y=25)
-    lbl3=Label(ventana, text='CATEGORIA:')
+    lbl3=ttk.Label(ventana, text='CATEGORIA:')
     lbl3.place(x=10,y=90)
-    lbl4=Label(ventana, text='DESCRIPCION:')
+    lbl4=ttk.Label(ventana, text='DESCRIPCION:')
     lbl4.place(x=10,y=120)
-    lbl5=Label(ventana, text='CANTIDAD:')
+    lbl5=ttk.Label(ventana, text='CANTIDAD:')
     lbl5.place(x=10,y=150)
-    lbl6=Label(ventana, text='PRECIO COSTO:')
+    lbl6=ttk.Label(ventana, text='PRECIO COSTO:')
     lbl6.place(x=10,y=180)
-    lbl7=Label(ventana, text='PRECIO VP:')
+    lbl7=ttk.Label(ventana, text='PRECIO VP:')
     lbl7.place(x=10,y=210)
 
 
     mainloop()
-#oduloCarga()
+moduloCarga()
