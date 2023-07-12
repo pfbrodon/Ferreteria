@@ -299,7 +299,7 @@ btn2.place(x=520,y=90)
 btn3=ttk.Button(ventana,text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBoton1.TButton',width=25)
 btn3.place(x=520,y=50)
 #######################################
-btn4=ttk.Button(ventana, text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBoton1.TButton',width=25)
+btn4=ttk.Button(ventana, text='F2-LISTA DE PRECIOS', command=mostarTabla,style='EstiloBoton1.TButton',width=25)
 btn4.place(x=520,y=170)
 #######################################
 btnModificar=ttk.Button(ventana,text='MODIFICAR PRODUCTO', state=DISABLED, command=modificarProducto,style='EstiloBoton5.TButton',width=25)
@@ -315,7 +315,7 @@ btn7.place(x=320,y=210)
 btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBoton1.TButton',width=25)
 btn8.place(x=520,y=210)
 #######################################
-btn9=ttk.Button(ventana, text='EXPORTAR', command=exportatExcel,style='EstiloBoton1.TButton',width=25)
+btn9=ttk.Button(ventana, text='EXPORTAR LISTA', command=exportatExcel,style='EstiloBoton1.TButton',width=25)
 btn9.place(x=520,y=130)
 #######################################
 #btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
@@ -324,15 +324,15 @@ btn9.place(x=520,y=130)
 
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
-style.theme_use("default")
+style.theme_use('clam')#ASIGANCION DE THEMAS- CLAM, DEFAULT, ALT, AQUA, STEP, CLASSIC
 tablaFerreteria=ttk.Treeview(height=20,
                              show='tree headings',
                              columns=('#0', '#1','#2','#3','#4'))
 style.configure("Treeview",
-                background="silver",
+                background="gray82",
                 foreground="black",
                 rowheight=25,
-                fieldbackground="silver"
+                fieldbackground="gray82"
                 )
 tablaFerreteria.place(x=10,y=250,width=700,height=400)
 tablaFerreteria.column('#0', width=20,anchor='e')
@@ -342,7 +342,7 @@ tablaFerreteria.heading('#1',text="CATEGORIA",anchor="center")
 tablaFerreteria.column('#2', width=250)
 tablaFerreteria.heading('#2',text="DESCRIPCION",anchor="center")
 tablaFerreteria.column('#3', width=20,anchor='e')
-tablaFerreteria.heading('#3',text="CANTIDAD",anchor="center")
+tablaFerreteria.heading('#3',text="STOCK",anchor="center")
 tablaFerreteria.column('#4', width=20,anchor='e')
 tablaFerreteria.heading('#4',text="PRECIO",anchor="center")
 tablaFerreteria.column('#5', width=20,anchor='e')

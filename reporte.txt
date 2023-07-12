@@ -1,31 +1,30 @@
 +----------+-------------+------------------------------------------+------------+----------+----------+
 |   CODIGO | CATEGORIA   | DESCRIPCION                              |   CANTIDAD |   PRECIO |      PVP |
 +==========+=============+==========================================+============+==========+==========+
-|        2 | BULONERIA   | TORNILLO FIX 5X55 MM                     |        524 |    67.50 |    71.52 |
-|        3 | buloneria   | Tornillo cabeza hexagonal M12x45         |         12 |   500.00 |   510.00 |
-|        4 | buloneria   | Tornillo Fix 6x50                        |         23 |    32.00 |    34.00 |
-|        5 | buloneria   | Tornillo Fix 5x45                        |         34 |    23.00 |    23.00 |
-|        6 | buloneria   | Tuerca M10 dureza 8                      |        560 |    26.00 |    28.00 |
-|        7 | buloneria   | Arandela M6x20mm                         |        789 |    12.00 |    15.00 |
-|        8 | buloneria   | Tornillo Allen M4x50 cabeza cilindrica   |        343 |   100.00 |   110.00 |
-|        9 | buloneria   | Tornillo Allen M6x35 cabeza cilindrica   |        234 |    76.00 |    78.00 |
-|       10 | buloneria   | Arandela de Presion 1/4"                 |        500 |    13.00 |    15.00 |
-|       11 | buloneria   | Arandela groover 5/8"                    |        400 |    21.00 |    24.00 |
-|       12 | buloneria   | Tornillo Allen cabeza fresasa M8x40      |         50 |   100.00 |   105.00 |
-|        1 | buloneria   | Tornillo Parker 3mm Philips              |       2323 |    12.00 |    14.00 |
-|       13 | buloneria   | Tornillo Fix 4.5x40                      |        400 |    20.00 |    23.00 |
-|       14 | buloneria   | Tuerca Autofrenante M8 Zincada           |        435 |    25.00 |    26.00 |
-|       15 | buloneria   | Tuerca Autofrenante M6 Zincada           |        563 |    20.00 |    23.00 |
-|       16 | buloneria   | Tornillo Cabeza Hexagonal 3/8 Whitworth  |        120 |    15.00 |    16.00 |
-|       17 | buloneria   | Tornillo Cabeza Hexagonal 5/16 Whitworth |        300 |    14.00 |    15.00 |
-|       18 | buloneria   | Arandela Biselada M8 Zinc                |        369 |    20.00 |    24.00 |
-|      235 | ferreteria  | lima bastarda 10 pulgadas                |         25 |  2500.00 |  2950.00 |
-|    34342 | buloneria   | Prisionero m6                            |        333 |    34.00 |    50.00 |
-|     4586 | FERRETERIA  | Llave Combinada N19                      |         45 |  2000.00 |  2500.00 |
+|        3 | BULONERIA   | TORNILLO CABEZA HEXAGONAL M12X45         |         12 |   560.00 |   510.00 |
+|        4 | BULONERIA   | TORNILLO FIX 6X55                        |         23 |    32.45 |    34.12 |
+|        5 | BULONERIA   | TORNILLO FIX 5X45                        |         34 |    23.00 |    23.00 |
+|        6 | BULONERIA   | TUERCA M10 DUREZA 8                      |        560 |    26.00 |    28.00 |
+|        7 | BULONERIA   | ARANDELA M6X20MM                         |        789 |    12.00 |    15.00 |
+|        8 | BULONERIA   | TORNILLO ALLEN M4X50 CABEZA CILINDRICA   |        343 |   100.00 |   110.00 |
+|        9 | BULONERIA   | TORNILLO ALLEN M6X35 CABEZA CILINDRICA   |        234 |    76.00 |    78.00 |
+|       10 | BULONERIA   | ARANDELA DE PRESION 1/4"                 |        500 |    13.00 |    15.00 |
+|       11 | BULONERIA   | ARANDELA GROOVER 5/8"                    |        400 |    21.00 |    24.00 |
+|       12 | BULONERIA   | TORNILLO ALLEN CABEZA FRESASA M8X40      |         50 |   100.00 |   105.00 |
+|        1 | BULONERIA   | TORNILLO PARKER 3MM PHILIPS              |       2323 |    12.00 |    14.00 |
+|       13 | BULONERIA   | TORNILLO FIX 4.5X40                      |        400 |    20.00 |    23.00 |
+|       14 | BULONERIA   | TUERCA AUTOFRENANTE M8 ZINCADA           |        435 |    25.00 |    26.00 |
+|       15 | BULONERIA   | TUERCA AUTOFRENANTE M6 ZINCADA           |        564 |    20.00 |    23.00 |
+|       16 | BULONERIA   | TORNILLO CABEZA HEXAGONAL 3/8 WHITWORTH  |        120 |    15.00 |    16.00 |
+|       17 | BULONERIA   | TORNILLO CABEZA HEXAGONAL 5/16 WHITWORTH |        300 |    14.00 |    15.00 |
+|       18 | BULONERIA   | ARANDELA BISELADA M8 ZINC                |        369 |    20.00 |    24.00 |
+|      235 | FERRETERIA  | LIMA BASTARDA 10 PULGADAS                |         25 |  2500.00 |  2950.00 |
+|    34342 | BULONERIA   | TORNILLO PRISIONERO M6                   |        333 |    34.00 |    50.00 |
+|     4586 | FERRETERIA  | LLAVE COMBINADA N19                      |         45 |  2000.00 |  2500.00 |
 |     6985 | FERRETERIA  | LLAVE COMBINADA N13                      |         10 |  1900.00 |  2400.00 |
 |   232424 | FERRETERIA  | LLAVE COMBINADA N12                      |         23 |  1300.00 |  1500.00 |
 |    45332 | FERRETERIA  | LLAVE FRANCESA 10 PULGADAS               |        234 |  2300.00 |  3000.43 |
-|     4585 | FERRETERIA  | CALIBRE 150MM                            |         12 | 19000.00 | 25500.00 |
+|     4585 | FERRETERIA  | CALIBRE ANALOGICO ACERO INOX 150MM       |         12 | 19000.00 | 25500.00 |
 |     8998 | FERRETERIA  | DESTORNILLADOR PLANO 4X150MM             |         15 |  1500.00 |  1720.60 |
 |     9854 | FERRETERIA  | BASE MAGNETIA ARTICULADA 300M            |          2 | 35000.00 | 42562.36 |
 |      658 | FERRETERIA  | DESTORNILLADOR PH1X150MM                 |         12 |  1000.00 |  1253.00 |
@@ -35,6 +34,28 @@
 |     7485 | FERRETERIA  | TUBO ESTRIADO METRICO 15 1/2             |         15 |  1400.00 |  1745.00 |
 |     9658 | FERRETERIA  | NIVEL LASER 15M ALCANCE EJE X/Y          |          2 | 56000.00 | 62355.14 |
 |    69658 | FERRETERIA  | TORNILLO MICROMETRICO 25-50MM            |          2 | 45752.36 | 55000.00 |
-|     7563 | FERRETERIA  | REGLA METALICA DE 300 MM                 |         10 |   740.00 |   955.50 |
-|      324 | FERRETERIA  | ESCUADRA MAGNETICA DE 3 PULGADAS         |          6 |  2500.00 |  2945.00 |
+|     7563 | FERRETERIA  | REGLA METALICA DE 300 MM                 |         11 |   740.00 |   955.50 |
+|      324 | FERRETERIA  | ESCUADRA MAGNETICA DE 3 PULGADAS         |          7 |  2500.00 |  2945.00 |
+|      236 | FERRETERIA  | LIMA BASTARDA 8 PULGADAS                 |         25 |  2500.00 |  2950.00 |
+|    45876 | FERRETERIA  | MECHA ACERO RAPIDO 8MM                   |         10 |   942.00 |  1050.00 |
+|    45880 | FERRETERIA  | MECHA ACERO RAPIDO 10MM                  |         11 |  1200.00 |  1350.00 |
+|    85648 | FERRETERIA  | PINZA UNIVERSAL 8 PULGADAS               |         16 |  1500.00 |  1600.25 |
+|    56537 | FERRETERIA  | PRENSA "G" 4 PULGADAS                    |          3 |  3000.00 |  4000.00 |
+|    34343 | BULONERIA   | TORNILLO PRISIONERO M8                   |        333 |    35.00 |    55.00 |
+|    45881 | FERRETERIA  | MECHA ACERO RAPIDO 10.5MM                |         13 |  1250.00 |  1400.00 |
+|    34344 | BULONERIA   | TORNILLO PRISIONERO M10                  |        100 |    50.00 |    65.00 |
+|    45878 | FERRETERIA  | MECHA ACERO RAPIDO 6MM                   |         12 |  1250.00 |  1450.00 |
+|   345345 | FERRETERIA  | LLAVE PICO DE LORO 6 PLGADAS             |          4 |  3000.00 |  3500.00 |
+|        2 | BULONERIA   | TORNILLO FIX 5X55MM                      |        100 |    23.00 |    25.00 |
+|      999 | BULONERIA   | PRODUCTO                                 |          2 |     2.00 |     2.00 |
+|  1234567 | BULONERIA   | TORNILLO FIX 3X16MM                      |        200 |    12.00 |    15.00 |
+|  1234565 | FERRETERIA  | LLAVE INGLESA DE 10 PULGADAS             |          4 |  2500.00 |  3000.00 |
+|       23 | FERRETERIA  | PINZA DE PUNTA RECTA 6 PULGADAS          |          2 |  5500.00 |  7000.00 |
+|       24 | FERRETERIA  | PINZA CRIMPEADORA TERMINALES TIFF 0-16MM |          2 | 20000.00 | 24570.00 |
+|       25 | BULONERIA   | TUERCA M8 DUREZA 8                       |        200 |    12.00 |    15.00 |
+|       26 | FERRETERIA  | JUEGO DE LLAVES ALLEN MILIMETRICAS       |          2 | 10000.00 | 12000.00 |
+|       22 | BULONERIA   | TUERCA CASTILLO M10                      |        100 |    50.00 |    60.00 |
+|    25642 | FERRETERIA  | ARCO DE SIERRA                           |          2 |  5000.00 |  6000.00 |
+|    35426 | FERRETERIA  | ESCUADRA CON SOMBRERO 150MM NORMA DIN    |          2 |  7500.00 |  8365.40 |
+|     2323 | FERRETERIA  | PUNTA DE TRZAR DE WIDIA                  |         12 |  1200.00 |  1450.00 |
 +----------+-------------+------------------------------------------+------------+----------+----------+
