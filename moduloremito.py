@@ -37,7 +37,7 @@ def formatoDecimal(value):
     return "{:,.2f}".format(value)  # Formato con 2 decimales y separadores de miles
 ##FUNCION DE LISTADO DE PRODUCTOS###########################################################
 def mostarTabla():
-    tablaFerreteria.delete(*tablaRemito.get_children())#borra el contenido de la tabla
+    tablaFerreteria.delete(*tablaFerreteria.get_children())#borra el contenido de la tabla
     mi_conexion= sqlite3.connect("basededatosPrueba.db")  
     cursor=mi_conexion.cursor() 
     instruccion= f"SELECT * FROM stockFerreteria"
@@ -48,19 +48,7 @@ def mostarTabla():
     for columna in datos:
         tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
     limpiarEntry()
-def mostarTablaRemito():
-    tablaFerreteria.delete(*tablaRemito.get_children())#borra el contenido de la tabla
-    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
-    cursor=mi_conexion.cursor() 
-    instruccion= f"SELECT * FROM stockFerreteria"
-    cursor.execute(instruccion)
-    datos=cursor.fetchall()
-    mi_conexion.commit()
-    mi_conexion.close()
-    for columna in datos:
-        tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
-    limpiarEntry()
-
+    
 ##FUNCIONES DE BUSQUEDA DE PRODUCTOS################################################################
 def busquedaCodigo():#POR CODIGO
     tablaFerreteria.delete(*tablaFerreteria.get_children())#borra el contenido de la tabla
@@ -88,8 +76,8 @@ def busquedaDescripcion():#POR DESCRIPCION
     for columna in datos:
         tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
 
-###FUNCION DE BORRADO DE PRODUCTO############################################################################
-def borrarProducto():
+###FUNCION DE BORRADO DE PRODUCTO D REMITO###########################################################################
+def borrarProductoRemito():
     varCodigo=int(entradaCodigo.get())
     mi_conexion= sqlite3.connect("basededatosPrueba.db")  
     cursor=mi_conexion.cursor() 
@@ -130,7 +118,6 @@ def imprimirSeleccion(event):
         #mostrarModificar(ver=True)
 ###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
 def insertarTablaRemito():
-    #tablaFerreteria.delete(*tablaFerreteria.get_children())#borra el contenido de la tabla
     #####ASIGNACION DE VALORES A LAS VARIABLES
     varCodigo=int(entradaCodigo.get())
     varCategoria=entradaCategoria.get()
@@ -139,8 +126,6 @@ def insertarTablaRemito():
     varPrecioUnit=float(entradaPrecio.get())
     varPrecioVPublico=float(entradaPrecioVP.get()) 
     tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico)))
-    limpiarEntry()
-    mostarTabla()
        
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
 def capturaSeleccion(event):
@@ -176,26 +161,12 @@ def limpiarEntry():
     entradaPrecio.delete(0, tk.END)
     entradaPrecioVP.delete(0, tk.END)
     
+##FUNCION DE IMPRESION DE CONTENIDO DE TABLA#####################################################
+def contenidoTablaRemito():
+    for item in tablaFerreteria:
+        print(item)
     
-################################################################################ 
-##FUNCION PARA VALORIZAR EL TOTAL DEL STOCK#####################################
-def valorizarStock():
-    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
-    cursor=mi_conexion.cursor() 
-    instruccion= f"SELECT * FROM stockFerreteria"
-    cursor.execute(instruccion)
-    datos=cursor.fetchall()
-    mi_conexion.commit()
-    mi_conexion.close()
-    sumaStock=0
-    for valor in datos:
-        (codigo, categoria ,descripcion, cantidad, preciounit, precioVPublico)=valor
-        producto=cantidad*preciounit
-        sumaStock=producto+sumaStock
-        #print(producto)
-    print(f"El valor acumulado de todo su Stock es de: ${sumaStock:,.2f} ")##IMPRESION EN CONSOLA PARA REFERNCIA
-    lbl10.config(text=f'$ {sumaStock:,}.-', font=fuenteNegrita)
-    return sumaStock
+    
 ##################################################################################################   
 #INICIALIZACION DE VARIABLES######################################################################
 codigoBusq=int()
@@ -257,14 +228,14 @@ btn4=ttk.Button(ventana,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla
 btn4.place(x=300,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ttk.Button(ventana ,text='BAJA PRODUCTO', command=borrarProducto,style='EstiloBotonRemito2.TButton')
+btn7=ttk.Button(ventana ,text='BAJA PRODUCTO', command=borrarProductoRemito,style='EstiloBotonRemito2.TButton')
 btn7.place(x=10,y=145)
 #######################################
 btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-#btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
-#btn10.place(x=520,y=210)
+btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=contenidoTablaRemito)
+btn10.place(x=520,y=10)
 ################################################################################
 
 ################################################################################
