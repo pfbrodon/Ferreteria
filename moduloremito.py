@@ -22,6 +22,7 @@ ventana.configure(background="lightblue")#COLOR DE FONDO DE VENTANA
 ventana.bind('<F1>', lambda event: activarValorizar())
 ventana.bind('<F2>', lambda event: activarCargaLPrecios())
 
+spinbox = ttk.Spinbox()
 #CREACION DE UN MARCO#########################################
 cuadro1=tk.Frame(ventana,width=400,height=150,borderwidth=1,
         highlightthickness=1,
@@ -136,11 +137,11 @@ def insertarTablaRemito():
     varCodigo=int(entradaCodigo.get())
     varCategoria=entradaCategoria.get()
     varDescripcion=entradaDescripcion.get()
-    varCantidad=spinbox.get()
+    varCantidad=(spinbox.get())
     varPrecioUnit=float(entradaPrecio.get())
     varPrecioVPublico=float(entradaPrecioVP.get())
     print (f"el varlor es:{varCantidad}")
-    varSubtotal=50
+    varSubtotal=(float(varCatidad)*varPrecioVPublico)
     tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
        
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
@@ -155,7 +156,8 @@ def capturaSeleccion(event):
         entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCantidad.insert(0,valoresSelec[2])
         spinCant=valoresSelec[2]
-        #print(valoresSelec[2]) impresion de ayuda
+        #print(valoresSelec[2])
+        print (f"el valor para spinbox es: {spinCant}") #impresion de ayuda
         spinbox = ttk.Spinbox(ventana, from_=0, to=(spinCant), increment=1, width=5)
         spinbox.place(x=420,y=110)
         #########################################
@@ -205,10 +207,10 @@ codigoBusq=int()
 descripcionBusq=()
 itemTabla=()
 sumaStock=()
-spinCant= 1
+#spinCant= float()
 ##SPINBOX##########################################################################################
-spinbox = ttk.Spinbox(ventana, from_=0, to=spinCant, increment=1, width=5)
-spinbox.place(x=420,y=110)    
+#spinbox = ttk.Spinbox(ventana, from_=0, to=spinCant, increment=1, width=5)
+#spinbox.place(x=420,y=110)    
 
 #ENTRY#############################################################################################
 varUbicacion=ventana
