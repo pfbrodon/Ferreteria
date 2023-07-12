@@ -1,25 +1,29 @@
 import tkinter as tk
 
-# Función para obtener el valor seleccionado
-def obtener_valor():
-    valor = spinbox_var.get()
-    print("Valor seleccionado:", valor)
+def cambiar_rango():
+    nuevo_rango = int(variable.get())  # Obtener el nuevo valor del rango
+    spinbox.configure(to=nuevo_rango)  # Configurar el nuevo rango en el Spinbox
 
-# Crear la ventana
+# Crear la ventana principal
 ventana = tk.Tk()
-ventana.title("Ejemplo de Spinbox")
 
-# Crear una variable para el Spinbox
-spinbox_var= 10
-#spinbox_var.set(10)  # Valor inicial
+# Crear una variable de control
+variable = tk.StringVar()
 
-# Crear el Spinbox
-spinbox = tk.Spinbox(ventana, from_=0, to=spinbox_var, increment=1, width=10)
-spinbox.pack(pady=10)
+# Establecer un valor inicial en la variable de control
+variable.set("10")
 
-# Crear un botón para obtener el valor seleccionado
-boton_obtener = tk.Button(ventana, text="Obtener valor", command=obtener_valor)
-boton_obtener.pack()
+# Crear el Spinbox y vincularlo con la variable de control
+spinbox = tk.Spinbox(ventana, from_=0, to=100)
+spinbox.pack()
 
-# Iniciar el bucle de eventos de la ventana
+# Crear un Entry para ingresar el nuevo rango
+entry = tk.Entry(ventana, textvariable=variable)
+entry.pack()
+
+# Crear un botón para cambiar el rango del Spinbox
+boton = tk.Button(ventana, text="Cambiar rango", command=cambiar_rango)
+boton.pack()
+
+# Ejecutar la ventana principal
 ventana.mainloop()

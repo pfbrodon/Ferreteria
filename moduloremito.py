@@ -104,10 +104,10 @@ def imprimirSeleccion(event):
         entradaDescripcion.insert(0,valor[1])
         entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCantidad.insert(0,valor[2])
-        spinCant=valor[2]
+        nuevoRango=valor[2]
         #print(valor[2])
         #print valor
-        spinbox = ttk.Spinbox(ventana, from_=0, to=(spinCant), increment=1, width=5)
+        spinbox.configure(to=nuevoRango)
         spinbox.place(x=420,y=110) 
         #########################################
         #print (valor[3])#impresion de ayuda
@@ -123,12 +123,6 @@ def imprimirSeleccion(event):
         entradaCodigo.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCodigo.insert(0,tablaFerreteria.item(item)["text"])
         #mostrarModificar(ver=True)
-####VENTANA DE CANTIDAD#####################################################################
-def cargaCantidadRemito():
-    #    ventCantRem=tk.Tk()
-    #   ventCantRem.geometry("250x50+40+40")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
-    #   ventCantRem.title("CANTIDAD")#TITULO
-    varCantidad=int(entradaCantidad.get())
 
 ###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
 def insertarTablaRemito():
@@ -140,8 +134,8 @@ def insertarTablaRemito():
     varCantidad=(spinbox.get())
     varPrecioUnit=float(entradaPrecio.get())
     varPrecioVPublico=float(entradaPrecioVP.get())
-    print (f"el varlor es:{varCantidad}")
-    varSubtotal=(float(varCatidad)*varPrecioVPublico)
+    #print (f"el varlor es:{varCantidad}")
+    varSubtotal=(float(varCantidad)*varPrecioVPublico)
     tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
        
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
@@ -155,11 +149,10 @@ def capturaSeleccion(event):
         entradaDescripcion.insert(0,valoresSelec[1])
         entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCantidad.insert(0,valoresSelec[2])
-        spinCant=valoresSelec[2]
+        nuevoRango=valoresSelec[2]
         #print(valoresSelec[2])
-        print (f"el valor para spinbox es: {spinCant}") #impresion de ayuda
-        spinbox = ttk.Spinbox(ventana, from_=0, to=(spinCant), increment=1, width=5)
-        spinbox.place(x=420,y=110)
+        #print (f"el valor para spinbox es: {nuevoRango}") #impresion de ayuda
+        spinbox.configure(to=nuevoRango)
         #########################################
         #print (valoresSelec[3])#impresion de ayuda
         digitosPrecio= (valoresSelec[3]).replace(',','')
@@ -207,10 +200,10 @@ codigoBusq=int()
 descripcionBusq=()
 itemTabla=()
 sumaStock=()
-#spinCant= float()
+spinCant= 0
 ##SPINBOX##########################################################################################
-#spinbox = ttk.Spinbox(ventana, from_=0, to=spinCant, increment=1, width=5)
-#spinbox.place(x=420,y=110)    
+spinbox = ttk.Spinbox(ventana, from_=0, to=spinCant, increment=1, width=5)
+spinbox.place(x=420,y=110)    
 
 #ENTRY#############################################################################################
 varUbicacion=ventana
