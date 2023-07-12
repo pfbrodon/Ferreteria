@@ -324,7 +324,18 @@ btn9.place(x=520,y=130)
 
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
-tablaFerreteria=ttk.Treeview(height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
+style.theme_use("default")
+style.configure("Treeview",
+                background="silver",
+                foreground="black",
+                rowheight=25,
+                fieldbackground="silver"
+                )
+#style.map("Treeview",=[('select','green')])
+tablaFerreteria=ttk.Treeview(height=20,
+                             show='tree headings',
+                             columns=('#0', '#1','#2','#3','#4'))
+tablaFerreteria=ttk.Treeview(ventana)
 tablaFerreteria.place(x=10,y=250,width=700,height=400)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
