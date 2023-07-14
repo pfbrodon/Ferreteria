@@ -199,7 +199,10 @@ def modiContTablaRemito():
     seleccionDato= tablaRemito.focus()
     if seleccionDato:# Verifica que se haya seleccionado un elemento
         valores = (tablaRemito.item(seleccionDato)["values"])
+        valorCodigo = (tablaRemito.item(seleccionDato)["text"])
         print (valores)
+        print (valorCodigo)
+        #modiContTablaRemito()
     
     
     
