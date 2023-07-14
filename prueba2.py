@@ -1,18 +1,18 @@
 import tkinter as tk
 from tkinter import ttk
 
-def modificar_dato():
-    # Obtén el índice del elemento seleccionado
-    seleccion = treeview.focus()
-    
+def modificar_valor():
+    # Obtén la selección actual del treeview
+    seleccion = treeview.selection()
+
     # Verifica que se haya seleccionado un elemento
     if seleccion:
-        # Obtiene los valores de las columnas
-        valores = (treeview.item(seleccion)["values"])
-        
+        # Obtiene el identificador del elemento seleccionado
+        item = seleccion[0]
+
         # Modifica los valores de las columnas
         nuevos_valores = ("Nuevo Valor 1", "Nuevo Valor 2", "Nuevo Valor 3")
-        treeview.item(seleccion, values=nuevos_valores)
+        treeview.item(item, values=nuevos_valores)
 
 # Crear ventana
 ventana = tk.Tk()
@@ -38,8 +38,8 @@ treeview.heading("Columna 3", text="Columna 3", anchor=tk.W)
 treeview.insert("", tk.END, text="Elemento 1", values=("Valor 1", "Valor 2", "Valor 3"))
 treeview.insert("", tk.END, text="Elemento 2", values=("Valor 4", "Valor 5", "Valor 6"))
 
-# Botón para modificar dato
-boton_modificar = tk.Button(ventana, text="Modificar Dato", command=modificar_dato)
+# Botón para modificar valor
+boton_modificar = tk.Button(ventana, text="Modificar Valor", command=modificar_valor)
 boton_modificar.pack()
 
 ventana.mainloop()
