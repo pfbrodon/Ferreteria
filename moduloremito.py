@@ -135,10 +135,25 @@ def insertarTablaRemito():
     varCantidad=(spinbox.get())
     varPrecioUnit=float(entradaPrecio.get())
     varPrecioVPublico=float(entradaPrecioVP.get())
+    varStock=int(entradaCantidad.get())
     #print (f"el varlor es:{varCantidad}")
     varSubtotal=(float(varCantidad)*varPrecioVPublico)
     tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
     varTotal=varSubtotal+varTotal
+    #######resta de cantidad de productos###############################################
+    stockDisminuido=varStock-(int(varCantidad))
+    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaCantidad.insert(0,stockDisminuido)
+    ######DISMINUCION DE LA TABLA FERRETERIA############################################
+    mi_conexion= sqlite3.connect("basededatosPrueba.db")  
+    cursor=mi_conexion.cursor() 
+    instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
+    cursor.execute(instruccion)
+    mi_conexion.commit()
+    mi_conexion.close()
+
+    ####################################################################################
+    print(f"el estok restante es de: {stockDisminuido}")
     print(varTotal)
     lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita)   
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
