@@ -13,25 +13,26 @@ from modicantidadremito import modiCantidadRem
 dirDeTrabajo = os.path.dirname(__file__)
 os.chdir(dirDeTrabajo)
 ###########################################################################
-#CONFIGURACION INICIAL VENTANA PRINCIPAL
-ventana=tk.Tk()
-ventana.geometry("720x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
-ventana.title("GENERACION DE REMITOS")#TITULO
-ventana.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
-ventana.configure(background="lightblue")#COLOR DE FONDO DE VENTANA
-ventana.bind('<F1>', lambda event: activarValorizar())
-ventana.bind('<F2>', lambda event: activarCargaLPrecios())
+
+#CONFIGURACION INICIAL VENTANARemito PRINCIPAL
+ventanaRemito=tk.Tk()
+ventanaRemito.geometry("720x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
+ventanaRemito.title("GENERACION DE REMITOS")#TITULO
+ventanaRemito.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
+ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito
+ventanaRemito.bind('<F1>', lambda event: activarValorizar())
+ventanaRemito.bind('<F2>', lambda event: activarCargaLPrecios())
 fuenteNegrita = Font(weight="bold")
 spinbox = ttk.Spinbox()
 #CREACION DE UN MARCO#########################################
-cuadro1=tk.Frame(ventana,width=400,height=150,borderwidth=1,
+cuadro1=tk.Frame(ventanaRemito,width=400,height=150,borderwidth=1,
         highlightthickness=1,
         highlightbackground="lightblue",
         bg='lightblue',padx=1,pady=1)
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
 
-cuadro1=Frame(ventana,width=500,height=480)
+cuadro1=Frame(ventanaRemito,width=500,height=480)
 
 ############################################################################################
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
@@ -221,11 +222,11 @@ itemTabla=()
 sumaStock=()
 spinCant= 0
 ##SPINBOX##########################################################################################
-spinbox = ttk.Spinbox(ventana, from_=0, to=spinCant, increment=1, width=5)
+spinbox = ttk.Spinbox(ventanaRemito, from_=0, to=spinCant, increment=1, width=5)
 spinbox.place(x=420,y=108)    
 
 #ENTRY#############################################################################################
-varUbicacion=ventana
+varUbicacion=ventanaRemito
 entradaCodigo=ttk.Entry(varUbicacion,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
 entradaCodigo.place(x=65,y=48)
 entradaCategoria=ttk.Entry(varUbicacion,font=("Arial",10),width=12, textvariable=itemTabla)
@@ -239,24 +240,24 @@ entradaPrecio.place(x=110,y=108)
 entradaPrecioVP=ttk.Entry(varUbicacion,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
 entradaPrecioVP.place(x=290,y=108)
 #ETIQUETAS#####################################################################################
-lbl1=ttk.Label(ventana, text='VALOR DE STOCK CARGADO EN REMITO:',background='lightblue')
+lbl1=ttk.Label(ventanaRemito, text='VALOR DE STOCK CARGADO EN REMITO:',background='lightblue')
 lbl1.place(x=10,y=10)
-lbl10=ttk.Label(ventana, text='____________',background='lightblue')
+lbl10=ttk.Label(ventanaRemito, text='____________',background='lightblue')
 lbl10.place(x=240,y=8)
 ########################################################
-lblCodigo=ttk.Label(ventana, text='CODIGO:',background='lightblue')
+lblCodigo=ttk.Label(ventanaRemito, text='CODIGO:',background='lightblue')
 lblCodigo.place(x=10,y=50)
-lblCategoria=ttk.Label(ventana, text='CATEGORIA:',background='lightblue')
+lblCategoria=ttk.Label(ventanaRemito, text='CATEGORIA:',background='lightblue')
 lblCategoria.place(x=125,y=50)
-lblDescripcion=ttk.Label(ventana, text='DESCRIPCION:',background='lightblue')
+lblDescripcion=ttk.Label(ventanaRemito, text='DESCRIPCION:',background='lightblue')
 lblDescripcion.place(x=10,y=80)
-lblCantidad=ttk.Label(ventana, text='STOCK DSIPONIBLE:',background='lightblue')
+lblCantidad=ttk.Label(ventanaRemito, text='STOCK DSIPONIBLE:',background='lightblue')
 lblCantidad.place(x=300,y=50)
-lblPrecio=ttk.Label(ventana, text='PRECIO COSTO:',background='lightblue')
+lblPrecio=ttk.Label(ventanaRemito, text='PRECIO COSTO:',background='lightblue')
 lblPrecio.place(x=10,y=110)
-lblPrecioVP=ttk.Label(ventana, text='PRECIO VP:',background='lightblue')
+lblPrecioVP=ttk.Label(ventanaRemito, text='PRECIO VP:',background='lightblue')
 lblPrecioVP.place(x=220,y=110)
-lblValorTotal=ttk.Label(ventana, text=(f"TOTAL STOCK CARGADO: ${varTotal}-"),font=fuenteNegrita,background='lightblue')
+lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: ${varTotal}-"),font=fuenteNegrita,background='lightblue')
 lblValorTotal.place(x=400,y=670)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarValorizar():
@@ -268,26 +269,26 @@ style= ttk.Style()
 style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
 style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
 
-btn1=ttk.Button(ventana,text='INSERTAR',command=insertarTablaRemito,style='EstiloBotonRemito1.TButton',width=25)
+btn1=ttk.Button(ventanaRemito,text='INSERTAR',command=insertarTablaRemito,style='EstiloBotonRemito1.TButton',width=25)
 btn1.place(x=540,y=145)
 #######################################
-btn2=ttk.Button(ventana,  text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBotonRemito2.TButton',width=25)
+btn2=ttk.Button(ventanaRemito,  text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBotonRemito2.TButton',width=25)
 btn2.place(x=540,y=90)
 #######################################
-btn3=ttk.Button(ventana, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBotonRemito2.TButton',width=25)
+btn3=ttk.Button(ventanaRemito, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBotonRemito2.TButton',width=25)
 btn3.place(x=540,y=50)
 #######################################
-btn4=ttk.Button(ventana,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBotonRemito2.TButton')
+btn4=ttk.Button(ventanaRemito,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBotonRemito2.TButton')
 btn4.place(x=300,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ttk.Button(ventana ,text='BAJA PRODUCTO', command=borrarProductoRemito,style='EstiloBotonRemito2.TButton')
+btn7=ttk.Button(ventanaRemito ,text='BAJA PRODUCTO', command=borrarProductoRemito,style='EstiloBotonRemito2.TButton')
 btn7.place(x=10,y=145)
 #######################################
-btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
+btn8=ttk.Button(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventana, text='TEST', command=modiContTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
+btn10=ttk.Button(ventanaRemito, text='TEST', command=modiContTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
 btn10.place(x=540,y=10)
 ################################################################################
 
@@ -295,15 +296,15 @@ btn10.place(x=540,y=10)
 ###TREE VIEW- TABLA#############################################################
 style.theme_use('clam')#ASIGANCION DE THEMAS- CLAM, DEFAULT, ALT, AQUA, STEP, CLASSIC
 tablaFerreteria=ttk.Treeview(height=20,
-                             show='tree headings',
-                             columns=('#0', '#1','#2','#3','#4'))
+                            show='tree headings',
+                            columns=('#0', '#1','#2','#3','#4'))
 style.configure("Treeview",
                 background="white",
                 foreground="black",
                 rowheight=25,
                 fieldbackground="white"
                 )
-tablaFerreteria=ttk.Treeview(height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
+tablaFerreteria=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
 tablaFerreteria.place(x=10,y=190,width=700,height=150)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
@@ -322,7 +323,7 @@ tablaFerreteria.bind("<<TreeviewSelect>>", capturaSeleccion)
 
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
-tablaRemito=ttk.Treeview(height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4','#5'))
+tablaRemito=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4','#5'))
 tablaRemito.place(x=10,y=360,width=700,height=300)
 tablaRemito.column('#0', width=10,anchor='e')
 tablaRemito.heading('#0',text="CODIGO",anchor='center',)
@@ -342,4 +343,4 @@ tablaRemito.bind("<ButtonRelease-1>", imprimirSeleccion)
 tablaRemito.bind("<<TreeviewSelect>>", capturaSeleccion)
 
 mostarTabla()
-ventana.mainloop()
+ventanaRemito.mainloop()
