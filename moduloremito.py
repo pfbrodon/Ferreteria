@@ -151,7 +151,14 @@ def insertarTablaRemito():
     cursor.execute(instruccion)
     mi_conexion.commit()
     mi_conexion.close()
-
+    ###########SELECCION DEL TREEVIEW FERRETERIA
+    seleccion=tablaFerreteria.selection()
+    if seleccion:
+        valores=tablaFerreteria.item(seleccion)['values']
+        nuevosValores=list(valores)
+        print(f'nuevos valores para tablaferreteria{nuevosValores}')
+        nuevosValores[2] = stockDisminuido
+        tablaFerreteria.item(seleccion, values=nuevosValores)
     ####################################################################################
     print(f"el estok restante es de: {stockDisminuido}")
     print(varTotal)
