@@ -32,8 +32,6 @@ ventana.bind('<F2>', lambda event: activarCargaLPrecios())
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
 
-#cuadro1=Frame(ventana,width=500,height=400)
-
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
 def formatoDecimal(value): 
     return "{:,.2f}".format(value)  # Formato con 2 decimales y separadores de miles

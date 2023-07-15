@@ -5,7 +5,7 @@ from tkinter import Menu,ttk
 from tkinter import Tk, Label, Button, Entry, messagebox
 import os
 from tkinter.font import Font
-
+from modicantidadremito import modiCantidadRem
 
 
 ##CORRECCION DE RUTA DE ARCHIVOS#########################################
@@ -143,7 +143,7 @@ def insertarTablaRemito():
     #######resta de cantidad de productos###############################################
     stockDisminuido=varStock-(int(varCantidad))
     entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-    entradaCantidad.insert(0,stockDisminuido)
+    entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
     ######DISMINUCION DE LA TABLA FERRETERIA############################################
     mi_conexion= sqlite3.connect("basededatosPrueba.db")  
     cursor=mi_conexion.cursor() 
@@ -202,17 +202,14 @@ def limpiarEntry():
     entradaPrecioVP.delete(0, tk.END)
     
 ##FUNCION DE IMPRESION DE CONTENIDO DE TABLA#####################################################
-def contenidoTablaRemito():
-    valorTotal=0
-    for item_id in tablaRemito.get_children():
-    # Obtener los valores del elemento
-        valores = tablaRemito.item(item_id)["values"]
-        codigos=  tablaRemito.item(item_id)["text"]
-        valores.insert(0,codigos)
-        valorSubtotal=valores[6].replace(',','')
-        valorTotal= (float(valorSubtotal))+(float(valorTotal))
-        print(valores)#impresion con el codigo en el indice 0
-    print (valorTotal)
+def modiContTablaRemito():
+    seleccionDato= tablaRemito.focus()
+    if seleccionDato:# Verifica que se haya seleccionado un elemento
+        valores = (tablaRemito.item(seleccionDato)["values"])
+        valorCodigo = (tablaRemito.item(seleccionDato)["text"])
+        print (valores)
+        print (valorCodigo)
+        #modiContTablaRemito()
     
     
     
@@ -290,7 +287,7 @@ btn7.place(x=10,y=145)
 btn8=ttk.Button(ventana,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventana, text='TEST', command=contenidoTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
+btn10=ttk.Button(ventana, text='TEST', command=modiContTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
 btn10.place(x=540,y=10)
 ################################################################################
 
