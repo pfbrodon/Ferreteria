@@ -2,10 +2,9 @@ import sqlite3
 import tkinter as tk
 from tkinter import *
 from tkinter import Menu,ttk
-from tkinter import Tk, Label, Button, Entry, messagebox
 import os
 from tkinter.font import Font
-from modicantidadremito import modiCantidadRem
+from tkinter.simpledialog import askstring
 
 
 ##CORRECCION DE RUTA DE ARCHIVOS#########################################
@@ -207,10 +206,16 @@ def modiContTablaRemito():
     seleccionDato= tablaRemito.focus()
     if seleccionDato:# Verifica que se haya seleccionado un elemento
         valores = (tablaRemito.item(seleccionDato)["values"])
-        valorCodigo = (tablaRemito.item(seleccionDato)["text"])
+        #valorCodigo = (tablaRemito.item(seleccionDato)["text"])
         print (valores)
-        print (valorCodigo)
+        #print (valorCodigo)
         #modiContTablaRemito()
+        # Solicitar al usuario ingresar el nuevo valor
+        nuevoValorStock= askstring("Modificar valor", "Ingrese el nuevo valor", initialvalue=valores[2])
+        if nuevoValorStock:
+            # Actualizar el elemento en el Treeview con el nuevo valor
+            tablaRemito.set(seleccionDato, column='#3', value=nuevoValorStock)
+
     
     
     
