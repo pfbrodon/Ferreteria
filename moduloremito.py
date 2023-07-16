@@ -155,7 +155,9 @@ def insertarTablaRemito():
     seleccion=tablaFerreteria.selection()
     if seleccion:
         valores=tablaFerreteria.item(seleccion)['values']
+        indice=tablaFerreteria.item(seleccion)['text']
         nuevosValores=list(valores)
+        print(f'index para tablaferreteria{indice}')
         print(f'nuevos valores para tablaferreteria{nuevosValores}')
         nuevosValores[2] = stockDisminuido
         tablaFerreteria.item(seleccion, values=nuevosValores)
