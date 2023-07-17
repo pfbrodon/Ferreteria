@@ -316,8 +316,8 @@ btn8.place(x=520,y=210)
 btn9=ttk.Button(ventana, text='EXPORTAR LISTA', command=exportatExcel,style='EstiloBoton1.TButton',width=25)
 btn9.place(x=520,y=130)
 #######################################
-#btn10=Button(ventana, font=("Arial",9), fg="black",border= 3,width=25,  text='TEST', command=print('SIN FUNCION'))
-#btn10.place(x=520,y=210)
+btn10=ttk.Button(ventana, text='MODULO REMITO',command= print("en preparacion"),style='EstiloBoton1.TButton',width=25)
+btn10.place(x=320,y=50)
 ################################################################################
 
 ################################################################################

@@ -1,45 +1,44 @@
 import tkinter as tk
 from tkinter import ttk
 
-def modificar_dato():
-    # Obtén el índice del elemento seleccionado
-    seleccion = treeview.focus()
-    
-    # Verifica que se haya seleccionado un elemento
+def modificar_datos_seleccionados():
+    # Obtener el índice del elemento seleccionado
+    seleccion = tree.selection()
     if seleccion:
-        # Obtiene los valores de las columnas
-        valores = (treeview.item(seleccion)["values"])
+        indice = tree.index(seleccion)
+        print(indice)
+        # Obtener los valores del elemento seleccionado
+        item = tree.item(seleccion)
+        valores = item["values"]
         
-        # Modifica los valores de las columnas
-        nuevos_valores = ("Nuevo Valor 1", "Nuevo Valor 2", "Nuevo Valor 3")
-        treeview.item(seleccion, values=nuevos_valores)
+        # Modificar los valores del elemento seleccionado
+        nuevos_valores = (valores[0] + " (modificado)", valores[1] + " (modificado)")
+        
+        # Actualizar el elemento en el TreeView
+        tree.item(seleccion, values=nuevos_valores)
 
-# Crear ventana
+# Crear la ventana principal
 ventana = tk.Tk()
 
-# Crear Treeview
-treeview = ttk.Treeview(ventana)
-treeview.pack()
+# Crear el TreeView
+tree = ttk.Treeview(ventana)
+tree["columns"] = ("columna1", "columna2")  # Definir las columnas del TreeView
+tree.heading("#0", text="Dato")  # Encabezado de la primera columna
+tree.heading("columna1", text="Columna 1")  # Encabezado de la segunda columna
+tree.heading("columna2", text="Columna 2")  # Encabezado de la tercera columna
+tree.pack()
 
-# Agregar columnas
-treeview["columns"] = ("Columna 1", "Columna 2", "Columna 3")
-treeview.column("#0", width=0, stretch=tk.NO)
-treeview.column("Columna 1", width=100)
-treeview.column("Columna 2", width=100)
-treeview.column("Columna 3", width=100)
+# Agregar algunos datos al TreeView
+datos = [
+    ("Dato 1", "Valor 1"),
+    ("Dato 2", "Valor 2"),
+    ("Dato 3", "Valor 3")
+]
+for dato in datos:
+    tree.insert("", "end", values=dato)
 
-# Agregar encabezados de columnas
-treeview.heading("#0", text="", anchor=tk.W)
-treeview.heading("Columna 1", text="Columna 1", anchor=tk.W)
-treeview.heading("Columna 2", text="Columna 2", anchor=tk.W)
-treeview.heading("Columna 3", text="Columna 3", anchor=tk.W)
-
-# Agregar datos
-treeview.insert("", tk.END, text="Elemento 1", values=("Valor 1", "Valor 2", "Valor 3"))
-treeview.insert("", tk.END, text="Elemento 2", values=("Valor 4", "Valor 5", "Valor 6"))
-
-# Botón para modificar dato
-boton_modificar = tk.Button(ventana, text="Modificar Dato", command=modificar_dato)
+# Botón para modificar los datos seleccionados
+boton_modificar = tk.Button(ventana, text="Modificar", command=modificar_datos_seleccionados)
 boton_modificar.pack()
 
 ventana.mainloop()
