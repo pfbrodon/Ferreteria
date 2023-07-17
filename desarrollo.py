@@ -130,6 +130,15 @@ def insertarTablaRemito():
     #####ASIGNACION DE VALORES A LAS VARIABLES
     global varTotal
     varCodigo=int(entradaCodigo.get())
+    valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
+    for valorRemito in valoresRemito:#recorre los elementos text de la tablaRemito
+        valor=tablaRemito.item(valorRemito,'text')
+        print(f'el dodigo a comparar es: {valor}')
+        if valor==varCodigo:
+            print('hacemos una suma')
+        else:
+            print('insertamos un nuevo valor')
+    
     varCategoria=entradaCategoria.get()
     varDescripcion=entradaDescripcion.get()
     varCantidad=(spinbox.get())
