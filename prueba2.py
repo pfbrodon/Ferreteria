@@ -1,45 +1,39 @@
 import tkinter as tk
 from tkinter import ttk
 
-def modificar_valor():
-    # Obtén la selección actual del treeview
-    seleccion = treeview.selection()
+def buscar_valor(tree, valor_buscado):
+    for item in tree.get_children():
+        # Obtener los valores de la fila actual en el treeview
+        fila = tree.item(item)['values']
+        # Comprobar si el valor buscado está en la fila actual
+        if valor_buscado in fila:
+            return item  # Devuelve el identificador del elemento en el treeview
+    return None  # Si no se encuentra el valor, devuelve None
 
-    # Verifica que se haya seleccionado un elemento
-    if seleccion:
-        # Obtiene el identificador del elemento seleccionado
-        item = seleccion[0]
+# Crear la ventana principal
+root = tk.Tk()
+root.title("Buscar en Treeview")
 
-        # Modifica los valores de las columnas
-        nuevos_valores = ("Nuevo Valor 1", "Nuevo Valor 2", "Nuevo Valor 3")
-        treeview.item(item, values=nuevos_valores)
+# Crear el Treeview con algunas filas
+tree = ttk.Treeview(root, columns=('columna1', 'columna2'))
+tree.heading('#0', text='ID')
+tree.heading('columna1', text='Nombre')
+tree.heading('columna2', text='Edad')
 
-# Crear ventana
-ventana = tk.Tk()
+tree.insert('', 'end', text='1', values=('Juan', 25))
+tree.insert('', 'end', text='2', values=('María', 30))
+tree.insert('', 'end', text='3', values=('Carlos', 22))
 
-# Crear Treeview
-treeview = ttk.Treeview(ventana)
-treeview.pack()
+tree.pack()
 
-# Agregar columnas
-treeview["columns"] = ("Columna 1", "Columna 2", "Columna 3")
-treeview.column("#0", width=0, stretch=tk.NO)
-treeview.column("Columna 1", width=100)
-treeview.column("Columna 2", width=100)
-treeview.column("Columna 3", width=100)
+# Valor que queremos buscar
+valor_buscado = 'María'
 
-# Agregar encabezados de columnas
-treeview.heading("#0", text="", anchor=tk.W)
-treeview.heading("Columna 1", text="Columna 1", anchor=tk.W)
-treeview.heading("Columna 2", text="Columna 2", anchor=tk.W)
-treeview.heading("Columna 3", text="Columna 3", anchor=tk.W)
+# Buscar el valor en el Treeview
+item_encontrado = buscar_valor(tree, valor_buscado)
+if item_encontrado is not None:
+    print(f"Valor encontrado en el ítem: {item_encontrado}")
+else:
+    print("Valor no encontrado en el Treeview.")
 
-# Agregar datos
-treeview.insert("", tk.END, text="Elemento 1", values=("Valor 1", "Valor 2", "Valor 3"))
-treeview.insert("", tk.END, text="Elemento 2", values=("Valor 4", "Valor 5", "Valor 6"))
-
-# Botón para modificar valor
-boton_modificar = tk.Button(ventana, text="Modificar Valor", command=modificar_valor)
-boton_modificar.pack()
-
-ventana.mainloop()
+root.mainloop()
