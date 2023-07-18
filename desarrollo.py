@@ -124,30 +124,12 @@ def imprimirSeleccion(event):
         entradaCodigo.insert(0,tablaFerreteria.item(item)["text"])
         #mostrarModificar(ver=True)
 ####################################################################################################################
-###BUESQUEDA VALOR EN TREEVIES REMITO###############################################################################
-def buscaCodigoRemito():
-        varCodigo=int(entradaCodigo.get())
-        #print(varCodigo)
-        for valor in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
-            fila=tablaRemito.item(valor,'text')
-           # fila=int(fila)
-            print(fila)
-            if varCodigo == fila:
-                #return valor
-                existeCodigo=TRUE
-                print(existeCodigo)
-                return existeCodigo
-                break
-        return   None
-            
-
-
-####################################################################################################################
 varTotal=0
 ###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
 def insertarTablaRemito():
     #####ASIGNACION DE VALORES A LAS VARIABLES
     global varTotal
+    varExisteProducto=False
     varCodigo=int(entradaCodigo.get())
     valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
     print(valoresRemito)
@@ -194,91 +176,87 @@ def insertarTablaRemito():
     else:
         print("el treeview tiene datos")
         varCantidad=(spinbox.get())
-        print('la cantidad es '+varCantidad)
+        #print('la cantidad es '+varCantidad)
         varCodigo=int(entradaCodigo.get())
         varPrecioVPublico=float(entradaPrecioVP.get())
         varStock=int(entradaCantidad.get())
-        '''for valorRemito in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
+        for valorRemito in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
             valorCodigoenRemito=tablaRemito.item(valorRemito,'text')
             valoresEnRemito=tablaRemito.item(valorRemito,'values')
-            print(f'el dodigo a comparar es: {valorCodigoenRemito}\n')
-            print(f'la cantidad en remito es: {valoresEnRemito[2]}\n')
-            if valorCodigoenRemito==varCodigo:'''
-        existeCodigo=buscaCodigoRemito()
-        if existeCodigo:    
+            #print(f'el dodigo a comparar es: {valorCodigoenRemito}\n')
+            #print(f'la cantidad en remito es: {valoresEnRemito[2]}\n')
+            if valorCodigoenRemito==varCodigo:
+                varExisteProducto=True
                 print('hacemos una suma')
-                cantIncremantada= (int(varCantidad))+(int(valoresEnRemito[2]))
-                subTotalIncrementado=cantIncremantada*varPrecioVPublico
-                print(cantIncremantada)
-                nuevosValoresRemito=list(valoresEnRemito)
-                print(nuevosValoresRemito)
-                nuevosValoresRemito[2]=str(cantIncremantada)
-                nuevosValoresRemito[5]=subTotalIncrementado
-                print(nuevosValoresRemito)
-                tablaRemito.item(valorRemito,values=nuevosValoresRemito)
-                #######RESTA CANTIDAD DE PRODUCTOS DE LA ENTRADA###############################################
-                stockDisminuido=varStock-(int(varCantidad))
-                entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-                entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
-                ######DISMINUCION DE LA TABLA FERRETERIA############################################
-                mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
-                cursor=mi_conexion.cursor() 
-                instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
-                cursor.execute(instruccion)
-                mi_conexion.commit()
-                mi_conexion.close()
-                ###########SELECCION DEL TREEVIEW FERRETERIA
-                seleccion=tablaFerreteria.selection()
-                if seleccion:
-                    valores=tablaFerreteria.item(seleccion)['values']
-                    indice=tablaFerreteria.item(seleccion)['text']
-                    nuevosValores=list(valores)
-                    #print(f'index para tablaferreteria{indice}')
-                    #print(f'nuevos valores para tablaferreteria{nuevosValores}')
-                    nuevosValores[2] = stockDisminuido
-                    tablaFerreteria.item(seleccion, values=nuevosValores)
-
-                break
-            else:
-                print('insertamos un nuevo valor')
-                varCodigo=int(entradaCodigo.get())
-                varCategoria=entradaCategoria.get()
-                varDescripcion=entradaDescripcion.get()
-                varCantidad=(spinbox.get())
-                varPrecioUnit=float(entradaPrecio.get())
-                varPrecioVPublico=float(entradaPrecioVP.get())
-                varStock=int(entradaCantidad.get())
-                #print (f"el varlor es:{varCantidad}")
-                varSubtotal=(float(varCantidad)*varPrecioVPublico)
-                tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
-                varTotal=varSubtotal+varTotal
-                #######resta de cantidad de productos###############################################
-                stockDisminuido=varStock-(int(varCantidad))
-                entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-                entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
-                ######DISMINUCION DE LA TABLA FERRETERIA############################################
-                mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
-                cursor=mi_conexion.cursor() 
-                instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
-                cursor.execute(instruccion)
-                mi_conexion.commit()
-                mi_conexion.close()
-                ###########SELECCION DEL TREEVIEW FERRETERIA
-                seleccion=tablaFerreteria.selection()
-                if seleccion:
-                    valores=tablaFerreteria.item(seleccion)['values']
-                    indice=tablaFerreteria.item(seleccion)['text']
-                    nuevosValores=list(valores)
-                    #print(f'index para tablaferreteria{indice}')
-                    #print(f'nuevos valores para tablaferreteria{nuevosValores}')
-                    nuevosValores[2] = stockDisminuido
-                    tablaFerreteria.item(seleccion, values=nuevosValores)
-                ####################################################################################
-                #print(f"el estok restante es de: {stockDisminuido}")
-                #print(varTotal)
-                lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita) 
-                break
-            
+        if varExisteProducto:
+            cantIncremantada= (int(varCantidad))+(int(valoresEnRemito[2]))
+            subTotalIncrementado=cantIncremantada*varPrecioVPublico
+            print(cantIncremantada)
+            nuevosValoresRemito=list(valoresEnRemito)
+            print(nuevosValoresRemito)
+            nuevosValoresRemito[2]=str(cantIncremantada)
+            nuevosValoresRemito[5]=subTotalIncrementado
+            #print(nuevosValoresRemito)
+            tablaRemito.item(valorRemito,values=nuevosValoresRemito)
+            #######RESTA CANTIDAD DE PRODUCTOS DE LA ENTRADA###############################################
+            stockDisminuido=varStock-(int(varCantidad))
+            entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
+            entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
+            ######DISMINUCION DE LA TABLA FERRETERIA############################################
+            mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
+            cursor=mi_conexion.cursor() 
+            instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
+            cursor.execute(instruccion)
+            mi_conexion.commit()
+            mi_conexion.close()
+            ###########SELECCION DEL TREEVIEW FERRETERIA
+            seleccion=tablaFerreteria.selection()
+            if seleccion:
+                valores=tablaFerreteria.item(seleccion)['values']
+                indice=tablaFerreteria.item(seleccion)['text']
+                nuevosValores=list(valores)
+                #print(f'index para tablaferreteria{indice}')
+                #print(f'nuevos valores para tablaferreteria{nuevosValores}')
+                nuevosValores[2] = stockDisminuido
+                tablaFerreteria.item(seleccion, values=nuevosValores)
+        else:
+            print('insertamos un nuevo valor')
+            varCodigo=int(entradaCodigo.get())
+            varCategoria=entradaCategoria.get()
+            varDescripcion=entradaDescripcion.get()
+            varCantidad=(spinbox.get())
+            varPrecioUnit=float(entradaPrecio.get())
+            varPrecioVPublico=float(entradaPrecioVP.get())
+            varStock=int(entradaCantidad.get())
+            #print (f"el varlor es:{varCantidad}")
+            varSubtotal=(float(varCantidad)*varPrecioVPublico)
+            tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
+            varTotal=varSubtotal+varTotal
+            #######resta de cantidad de productos###############################################
+            stockDisminuido=varStock-(int(varCantidad))
+            entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
+            entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
+            ######DISMINUCION DE LA TABLA FERRETERIA############################################
+            mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
+            cursor=mi_conexion.cursor() 
+            instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
+            cursor.execute(instruccion)
+            mi_conexion.commit()
+            mi_conexion.close()
+            ###########SELECCION DEL TREEVIEW FERRETERIA
+            seleccion=tablaFerreteria.selection()
+            if seleccion:
+                valores=tablaFerreteria.item(seleccion)['values']
+                indice=tablaFerreteria.item(seleccion)['text']
+                nuevosValores=list(valores)
+                #print(f'index para tablaferreteria{indice}')
+                #print(f'nuevos valores para tablaferreteria{nuevosValores}')
+                nuevosValores[2] = stockDisminuido
+                tablaFerreteria.item(seleccion, values=nuevosValores)
+            ####################################################################################
+            #print(f"el estok restante es de: {stockDisminuido}")
+            #print(varTotal)
+            lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita) 
             
 def ingresodatosRemito():            
     varCodigo=int(entradaCodigo.get())
@@ -447,7 +425,7 @@ btn7.place(x=10,y=145)
 btn8=ttk.Button(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventanaRemito, text='TEST', command=buscaCodigoRemito,style='EstiloBotonRemito2.TButton',width=25)
+btn10=ttk.Button(ventanaRemito, text='TEST', command=(),style='EstiloBotonRemito2.TButton',width=25)
 btn10.place(x=540,y=10)
 ################################################################################
 
