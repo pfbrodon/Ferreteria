@@ -132,7 +132,7 @@ def insertarTablaRemito():
     varExisteProducto=False
     varCodigo=int(entradaCodigo.get())
     valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
-    print(valoresRemito)
+    print(f'el valore del treeview al comienzo de la funciona: {valoresRemito}')
     if valoresRemito==():
         print("el treeview esta vacio")
         varCodigo=int(entradaCodigo.get())
@@ -180,11 +180,13 @@ def insertarTablaRemito():
         varCodigo=int(entradaCodigo.get())
         varPrecioVPublico=float(entradaPrecioVP.get())
         varStock=int(entradaCantidad.get())
+        #valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
         for valorRemito in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
             valorCodigoenRemito=tablaRemito.item(valorRemito,'text')
             valoresEnRemito=tablaRemito.item(valorRemito,'values')
             #print(f'el dodigo a comparar es: {valorCodigoenRemito}\n')
             #print(f'la cantidad en remito es: {valoresEnRemito[2]}\n')
+            print(valorRemito)
             if valorCodigoenRemito==varCodigo:
                 varExisteProducto=True
                 print('hacemos una suma')
