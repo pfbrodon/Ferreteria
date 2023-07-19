@@ -144,11 +144,9 @@ def imprimirSeleccion(event):
         entradaCodigo.insert(0,tablaFerreteria.item(item)["text"])
         #mostrarModificar(ver=True)
 ####################################################################################################################
-varTotal=0
 ###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
 def insertarTablaRemito():
     #####ASIGNACION DE VALORES A LAS VARIABLES
-    global varTotal
     varExisteProducto=False
     varCodigo=int(entradaCodigo.get())
     valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
@@ -165,7 +163,6 @@ def insertarTablaRemito():
         #print (f"el varlor es:{varCantidad}")
         varSubtotal=(float(varCantidad)*varPrecioVPublico)
         tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
-        varTotal=varSubtotal+varTotal
         #######resta de cantidad de productos###############################################
         stockDisminuido=varStock-(int(varCantidad))
         entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
@@ -190,8 +187,7 @@ def insertarTablaRemito():
         ####################################################################################
         #print(f"el estok restante es de: {stockDisminuido}")
         #print(varTotal)
-        lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita) 
-        
+        sumaSubTotales()
 
     else:
         print("el treeview tiene datos")
@@ -242,6 +238,7 @@ def insertarTablaRemito():
                 #print(f'nuevos valores para tablaferreteria{nuevosValores}')
                 nuevosValores[2] = stockDisminuido
                 tablaFerreteria.item(seleccion, values=nuevosValores)
+                sumaSubTotales()
         else:
             print('insertamos un nuevo valor')
             varCodigo=int(entradaCodigo.get())
@@ -254,7 +251,6 @@ def insertarTablaRemito():
             #print (f"el varlor es:{varCantidad}")
             varSubtotal=(float(varCantidad)*varPrecioVPublico)
             tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
-            varTotal=varSubtotal+varTotal
             #######resta de cantidad de productos###############################################
             stockDisminuido=varStock-(int(varCantidad))
             entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
@@ -279,8 +275,7 @@ def insertarTablaRemito():
             ####################################################################################
             #print(f"el estok restante es de: {stockDisminuido}")
             #print(varTotal)
-            
-            lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita) 
+            sumaSubTotales()
             
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
 def capturaSeleccion(event):
@@ -389,7 +384,7 @@ lblPrecio=ttk.Label(ventanaRemito, text='PRECIO COSTO:',background='lightblue')
 lblPrecio.place(x=10,y=110)
 lblPrecioVP=ttk.Label(ventanaRemito, text='PRECIO VP:',background='lightblue')
 lblPrecioVP.place(x=220,y=110)
-lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: ${varTotal}-"),font=fuenteNegrita,background='lightblue')
+lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: $ 0.00-"),font=fuenteNegrita,background='lightblue')
 lblValorTotal.place(x=400,y=670)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarValorizar():
