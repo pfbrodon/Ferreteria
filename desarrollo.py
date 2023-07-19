@@ -15,7 +15,7 @@ os.chdir(dirDeTrabajo)
 
 #CONFIGURACION INICIAL VENTANARemito PRINCIPAL
 ventanaRemito=tk.Tk()
-ventanaRemito.geometry("720x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
+ventanaRemito.geometry("730x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
 ventanaRemito.title("GENERACION DE REMITOS")#TITULO
 ventanaRemito.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
 ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito
@@ -88,7 +88,16 @@ def busquedaDescripcion():#POR DESCRIPCION
     mi_conexion.close()
     for columna in datos:
         tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
-
+    entradaCategoria.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaCategoria.insert(0,columna[1])
+    entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaDescripcion.insert(0,columna[2])
+    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaCantidad.insert(0,columna[3])
+    entradaPrecio.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaPrecio.insert(0,columna[4])
+    entradaPrecioVP.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaPrecioVP.insert(0,columna[5])
 ###FUNCION DE BORRADO DE PRODUCTO D REMITO###########################################################################
 def borrarProductoRemito():
     varCodigo=int(entradaCodigo.get())
@@ -270,45 +279,9 @@ def insertarTablaRemito():
             ####################################################################################
             #print(f"el estok restante es de: {stockDisminuido}")
             #print(varTotal)
+            
             lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita) 
             
-def ingresodatosRemito():            
-    varCodigo=int(entradaCodigo.get())
-    varCategoria=entradaCategoria.get()
-    varDescripcion=entradaDescripcion.get()
-    varCantidad=(spinbox.get())
-    varPrecioUnit=float(entradaPrecio.get())
-    varPrecioVPublico=float(entradaPrecioVP.get())
-    varStock=int(entradaCantidad.get())
-    #print (f"el varlor es:{varCantidad}")
-    varSubtotal=(float(varCantidad)*varPrecioVPublico)
-    tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
-    varTotal=varSubtotal+varTotal
-    #######resta de cantidad de productos###############################################
-    stockDisminuido=varStock-(int(varCantidad))
-    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-    entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
-    ######DISMINUCION DE LA TABLA FERRETERIA############################################
-    mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
-    cursor=mi_conexion.cursor() 
-    instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stockDisminuido}' WHERE codigo='{varCodigo}'"
-    cursor.execute(instruccion)
-    mi_conexion.commit()
-    mi_conexion.close()
-    ###########SELECCION DEL TREEVIEW FERRETERIA
-    seleccion=tablaFerreteria.selection()
-    if seleccion:
-        valores=tablaFerreteria.item(seleccion)['values']
-        indice=tablaFerreteria.item(seleccion)['text']
-        nuevosValores=list(valores)
-        print(f'index para tablaferreteria{indice}')
-        print(f'nuevos valores para tablaferreteria{nuevosValores}')
-        nuevosValores[2] = stockDisminuido
-        tablaFerreteria.item(seleccion, values=nuevosValores)
-    ####################################################################################
-    print(f"el estok restante es de: {stockDisminuido}")
-    print(varTotal)
-    lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${varTotal:,.2f}-"),font=fuenteNegrita)   
 ## Función que se ejecuta cuando cambia la selección en el TreeView#################################
 def capturaSeleccion(event):
     seleccion = tablaFerreteria.focus()  # Obtener el elemento seleccionado
@@ -361,8 +334,16 @@ def modiContTablaRemito():
         if nuevoValorStock:
             # Actualizar el elemento en el Treeview con el nuevo valor
             tablaRemito.set(seleccionDato, column='#3', value=nuevoValorStock)
+########SUMA SUBTOTALES###########################################################################
+def sumaSubTotales():
+        valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
+        sumaSubTotales=0
+        for valores in valoresRemito:
+            valorItem= tablaRemito.item(valores,'values')
+            valorSubtotal=(valorItem[5]).replace(',','')
+            sumaSubTotales=sumaSubTotales+(float(valorSubtotal))
+        lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${sumaSubTotales:,.2f}-"),font=fuenteNegrita) 
 
-    
     
     
 ##################################################################################################   
@@ -439,7 +420,7 @@ btn7.place(x=10,y=145)
 btn8=ttk.Button(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventanaRemito, text='TEST', command=(),style='EstiloBotonRemito2.TButton',width=25)
+btn10=ttk.Button(ventanaRemito, text='TEST', command=sumaSubTotales,style='EstiloBotonRemito2.TButton',width=25)
 btn10.place(x=540,y=10)
 ################################################################################
 
@@ -456,7 +437,7 @@ style.configure("Treeview",
                 fieldbackground="white"
                 )
 tablaFerreteria=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
-tablaFerreteria.place(x=10,y=190,width=700,height=150)
+tablaFerreteria.place(x=10,y=190,width=710,height=150)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
 tablaFerreteria.column('#1', width=40)
@@ -475,8 +456,8 @@ tablaFerreteria.bind("<<TreeviewSelect>>", capturaSeleccion)
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
 tablaRemito=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4','#5'))
-tablaRemito.place(x=10,y=360,width=700,height=300)
-tablaRemito.column('#0', width=10,anchor='e')
+tablaRemito.place(x=10,y=360,width=710,height=300)
+tablaRemito.column('#0', width=18,anchor='e')
 tablaRemito.heading('#0',text="CODIGO",anchor='center',)
 tablaRemito.column('#1', width=40)
 tablaRemito.heading('#1',text="CATEGORIA",anchor="center")
@@ -486,9 +467,9 @@ tablaRemito.column('#3', width=8,anchor='e')
 tablaRemito.heading('#3',text="CANT.",anchor="center")
 tablaRemito.column('#4', width=10,anchor='e')
 tablaRemito.heading('#4',text="PRECIO",anchor="center")
-tablaRemito.column('#5', width=10,anchor='e')
+tablaRemito.column('#5', width=15,anchor='e')
 tablaRemito.heading('#5',text="PVP",anchor='center')
-tablaRemito.column('#6', width=10,anchor='e')
+tablaRemito.column('#6', width=15,anchor='e')
 tablaRemito.heading('#6',text="SUBTOTAL",anchor='center')
 tablaRemito.bind("<ButtonRelease-1>", imprimirSeleccion)
 tablaRemito.bind("<<TreeviewSelect>>", capturaSeleccion)
