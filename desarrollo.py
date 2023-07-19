@@ -1,7 +1,7 @@
 import sqlite3 
 import tkinter as tk
 from tkinter import *
-from tkinter import Menu,ttk
+from tkinter import ttk
 import os
 from tkinter.font import Font
 from tkinter.simpledialog import askstring
@@ -65,6 +65,17 @@ def busquedaCodigo():#POR CODIGO
     for columna in datos:
         tablaFerreteria.insert("",0,text=columna[0], values=(columna[1],columna[2],columna[3],formatoDecimal(columna[4]),formatoDecimal(columna[5])))
         print(datos)
+    entradaCategoria.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaCategoria.insert(0,columna[1])
+    entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaDescripcion.insert(0,columna[2])
+    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaCantidad.insert(0,columna[3])
+    entradaPrecio.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaPrecio.insert(0,columna[4])
+    entradaPrecioVP.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaPrecioVP.insert(0,columna[5])
+
 def busquedaDescripcion():#POR DESCRIPCION
     tablaFerreteria.delete(*tablaFerreteria.get_children())#borra el contenido de la tabla treeview
     codigoBusq=entradaDescripcion.get()
@@ -184,12 +195,13 @@ def insertarTablaRemito():
         for valorRemito in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
             valorCodigoenRemito=tablaRemito.item(valorRemito,'text')
             valoresEnRemito=tablaRemito.item(valorRemito,'values')
-            #print(f'el dodigo a comparar es: {valorCodigoenRemito}\n')
-            #print(f'la cantidad en remito es: {valoresEnRemito[2]}\n')
+            print(f'el dodigo a comparar es: {valorCodigoenRemito}\n')
+            print(f'la cantidad en remito es: {valoresEnRemito[2]}\n')
             print(valorRemito)
             if valorCodigoenRemito==varCodigo:
                 varExisteProducto=True
                 print('hacemos una suma')
+                break
         if varExisteProducto:
             cantIncremantada= (int(varCantidad))+(int(valoresEnRemito[2]))
             subTotalIncrementado=cantIncremantada*varPrecioVPublico
@@ -197,8 +209,8 @@ def insertarTablaRemito():
             nuevosValoresRemito=list(valoresEnRemito)
             print(nuevosValoresRemito)
             nuevosValoresRemito[2]=str(cantIncremantada)
-            nuevosValoresRemito[5]=subTotalIncrementado
-            #print(nuevosValoresRemito)
+            nuevosValoresRemito[5]=(formatoDecimal(subTotalIncrementado))
+            print(nuevosValoresRemito)
             tablaRemito.item(valorRemito,values=nuevosValoresRemito)
             #######RESTA CANTIDAD DE PRODUCTOS DE LA ENTRADA###############################################
             stockDisminuido=varStock-(int(varCantidad))
