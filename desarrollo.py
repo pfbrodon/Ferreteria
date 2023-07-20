@@ -110,7 +110,7 @@ def borrarProductoRemito():
     mi_conexion.close()
     limpiarEntry()
     
-#FUNCION DE SELECCION MOUSE#################################################################################
+#FUNCION DE SELECCION DE MOUSE EN TABLA DE STOCK FERRETERIA#################################################################################
 def imprimirSeleccion(event):
     seleccion=tablaFerreteria.selection()
     #print(seleccion)
@@ -143,6 +143,17 @@ def imprimirSeleccion(event):
         entradaCodigo.delete(0, tk.END)  # Limpiar el contenido previo
         entradaCodigo.insert(0,tablaFerreteria.item(item)["text"])
         #mostrarModificar(ver=True)
+#FUNCION DE SELECCION DE MOUSE EN TABLA DE STOCK FERRETERIA#################################################################################
+def seleccionMouseTablaRemito(event):
+    seleccion=tablaRemito.selection()
+    #print(seleccion)
+    for item in seleccion:
+        valor=tablaRemito.item(item)["values"]
+        print("CODIGO:", tablaRemito.item(item)["text"])   #IMPRESION DE AYUDA
+        print(valor)                                        #IMPRESION DE AYUDA
+        print (valor[2])
+        #########################################
+        
 ####################################################################################################################
 ###FUNCION PARA INSERTAR EN TABLA REMITO############################################################################
 def insertarTablaRemito():
@@ -316,12 +327,12 @@ def limpiarEntry():
     entradaPrecioVP.delete(0, tk.END)
     
 ##FUNCION DE IMPRESION DE CONTENIDO DE TABLA#####################################################
-def modiContTablaRemito():
+def modiCantTablaRemito():
     seleccionDato= tablaRemito.focus()
     if seleccionDato:# Verifica que se haya seleccionado un elemento
         valores = (tablaRemito.item(seleccionDato)["values"])
         #valorCodigo = (tablaRemito.item(seleccionDato)["text"])
-        print (valores)
+        print (f'los valores para la seleccion a modificar son: {valores}')
         #print (valorCodigo)
         #modiContTablaRemito()
         # Solicitar al usuario ingresar el nuevo valor
@@ -329,6 +340,28 @@ def modiContTablaRemito():
         if nuevoValorStock:
             # Actualizar el elemento en el Treeview con el nuevo valor
             tablaRemito.set(seleccionDato, column='#3', value=nuevoValorStock)
+            valorEnTreeView=int(valores[2])
+            nuevoValorStock=int(nuevoValorStock)
+            print(f'valor del treeview{valorEnTreeView}')
+            print(f'el nuevo valor en remito es {nuevoValorStock}')
+            if nuevoValorStock>valorEnTreeView:
+                print("REALIZAR UNA RESTA A LA TABLAFERRETERIA Y AL TREEVIEW FERRETERIA")
+            elif nuevoValorStock<valorEnTreeView:
+                print ("REALIZAR UNA SUMA EN LA TABLA FERRETERIA Y EN EL TREEVIEW FERRETERIA")
+            elif nuevoValorStock==valorEnTreeView:
+                print("no hacer nada")
+                
+                
+def leerItemTabla(codigo):
+            mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
+            cursor=mi_conexion.cursor() 
+            instruccion= f"SELECT * FROM stockFerreteria WHERE codigo like '{codigo}'"##columna like '%variable%' busca un item en la columna que contenga el parametro de busqueda
+            cursor.execute(instruccion)
+            datos=cursor.fetchall()
+            mi_conexion.commit()
+            mi_conexion.close()
+
+    
 ########SUMA SUBTOTALES###########################################################################
 def sumaSubTotales():
         valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
@@ -415,7 +448,7 @@ btn7.place(x=10,y=145)
 btn8=ttk.Button(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventanaRemito, text='TEST', command=sumaSubTotales,style='EstiloBotonRemito2.TButton',width=25)
+btn10=ttk.Button(ventanaRemito, text='MODIF', command=modiCantTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
 btn10.place(x=540,y=10)
 ################################################################################
 
@@ -466,8 +499,8 @@ tablaRemito.column('#5', width=15,anchor='e')
 tablaRemito.heading('#5',text="PVP",anchor='center')
 tablaRemito.column('#6', width=15,anchor='e')
 tablaRemito.heading('#6',text="SUBTOTAL",anchor='center')
-tablaRemito.bind("<ButtonRelease-1>", imprimirSeleccion)
-tablaRemito.bind("<<TreeviewSelect>>", capturaSeleccion)
+tablaRemito.bind("<ButtonRelease-1>", seleccionMouseTablaRemito)
+
 
 mostarTabla()
 ventanaRemito.mainloop()

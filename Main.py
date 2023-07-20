@@ -327,10 +327,10 @@ tablaFerreteria=ttk.Treeview(height=20,
                              show='tree headings',
                              columns=('#0', '#1','#2','#3','#4'))
 style.configure("Treeview",
-                background="gray82",
+                background="white",
                 foreground="black",
                 rowheight=25,
-                fieldbackground="gray82"
+                fieldbackground="white"
                 )
 tablaFerreteria.place(x=10,y=250,width=700,height=400)
 tablaFerreteria.column('#0', width=20,anchor='e')
