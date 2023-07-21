@@ -331,9 +331,9 @@ def modiCantTablaRemito():
     seleccionDato= tablaRemito.focus()
     if seleccionDato:# Verifica que se haya seleccionado un elemento
         valores = (tablaRemito.item(seleccionDato)["values"])
-        #valorCodigo = (tablaRemito.item(seleccionDato)["text"])
+        valorCodigo = (tablaRemito.item(seleccionDato)["text"])
         print (f'los valores para la seleccion a modificar son: {valores}')
-        #print (valorCodigo)
+        print (valorCodigo)
         #modiContTablaRemito()
         # Solicitar al usuario ingresar el nuevo valor
         nuevoValorStock= askstring("Modificar valor", "Ingrese el nuevo valor", initialvalue=valores[2])
@@ -342,10 +342,20 @@ def modiCantTablaRemito():
             tablaRemito.set(seleccionDato, column='#3', value=nuevoValorStock)
             valorEnTreeView=int(valores[2])
             nuevoValorStock=int(nuevoValorStock)
-            print(f'valor del treeview{valorEnTreeView}')
+            print(f'valor del treeview {valorEnTreeView}')
             print(f'el nuevo valor en remito es {nuevoValorStock}')
             if nuevoValorStock>valorEnTreeView:
+                valorDecremento=nuevoValorStock-valorEnTreeView
                 print("REALIZAR UNA RESTA A LA TABLAFERRETERIA Y AL TREEVIEW FERRETERIA")
+                valorActTabla=leerItemTabla(valorCodigo)-valorDecremento
+                print (valorActTabla)
+                actualizaTabla(valorActTabla,valorCodigo)#actualiza la tabla con el nuevo valor del treeview remito
+                entradaCantidad.delete(0, tk.END)#borra el valor de la entrada stock
+                entradaCantidad.insert(0,valorActTabla)#actualiza el valor de la entrada stock con el nuevo valor de la tabla
+                #seleccionDatoFerreteria= tablaRemito.focus()
+                #seleccionTablaFerreteria(tablaFerreteria,valorCodigo)
+                tablaFerreteria.set(seleccionTablaFerreteria(tablaFerreteria,valorCodigo), column='#3', value=valorActTabla)
+
             elif nuevoValorStock<valorEnTreeView:
                 print ("REALIZAR UNA SUMA EN LA TABLA FERRETERIA Y EN EL TREEVIEW FERRETERIA")
             elif nuevoValorStock==valorEnTreeView:
@@ -355,11 +365,30 @@ def modiCantTablaRemito():
 def leerItemTabla(codigo):
             mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
             cursor=mi_conexion.cursor() 
-            instruccion= f"SELECT * FROM stockFerreteria WHERE codigo like '{codigo}'"##columna like '%variable%' busca un item en la columna que contenga el parametro de busqueda
+            instruccion= f"SELECT * FROM stockFerreteria WHERE codigo='{codigo}'"##columna like '%variable%' busca un item en la columna que contenga el parametro de busqueda
             cursor.execute(instruccion)
             datos=cursor.fetchall()
             mi_conexion.commit()
             mi_conexion.close()
+            print (datos)
+            for valorDato in datos:
+                print (valorDato[3])
+                valor=valorDato[3]
+                return valor
+def actualizaTabla(stock,codigo):
+            mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
+            cursor=mi_conexion.cursor() 
+            instruccion= f"UPDATE stockFerreteria SET  'cantidad'='{stock}' WHERE codigo='{codigo}'"
+            cursor.execute(instruccion)
+            mi_conexion.commit()
+            mi_conexion.close()
+
+def seleccionTablaFerreteria(tree,item):
+    item = tree.selection()[0]
+    values = tree.item(item, "values")
+    print("Elemento seleccionado:", values)
+    return values
+                
 
     
 ########SUMA SUBTOTALES###########################################################################
