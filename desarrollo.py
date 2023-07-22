@@ -352,10 +352,11 @@ def modiCantTablaRemito():
                 actualizaTabla(valorActTabla,valorCodigo)#actualiza la tabla con el nuevo valor del treeview remito
                 entradaCantidad.delete(0, tk.END)#borra el valor de la entrada stock
                 entradaCantidad.insert(0,valorActTabla)#actualiza el valor de la entrada stock con el nuevo valor de la tabla
-                #seleccionDatoFerreteria= tablaRemito.focus()
-                #seleccionTablaFerreteria(tablaFerreteria,valorCodigo)
-                tablaFerreteria.set(seleccionTablaFerreteria(tablaFerreteria,valorCodigo), column='#3', value=valorActTabla)
+                selecElementoTablaFerreteria(valorCodigo)
+                
+                #tablaFerreteria.set(selecElementoTablaFerreteria(valorCodigo),column='#3' ,value=valorActTabla)
 
+                
             elif nuevoValorStock<valorEnTreeView:
                 print ("REALIZAR UNA SUMA EN LA TABLA FERRETERIA Y EN EL TREEVIEW FERRETERIA")
             elif nuevoValorStock==valorEnTreeView:
@@ -370,9 +371,9 @@ def leerItemTabla(codigo):
             datos=cursor.fetchall()
             mi_conexion.commit()
             mi_conexion.close()
-            print (datos)
+            #print (datos)
             for valorDato in datos:
-                print (valorDato[3])
+                #print (valorDato[3])
                 valor=valorDato[3]
                 return valor
 def actualizaTabla(stock,codigo):
@@ -382,12 +383,24 @@ def actualizaTabla(stock,codigo):
             cursor.execute(instruccion)
             mi_conexion.commit()
             mi_conexion.close()
+            
+def busqElementoTablaFerreteria(codigoBuscado):
+    for item in tablaRemito.get_children():
+        if codigoBuscado==tablaRemito.item(item,'text'):
+            print(item)
+            return item
+        break
 
-def seleccionTablaFerreteria(tree,item):
-    item = tree.selection()[0]
-    values = tree.item(item, "values")
-    print("Elemento seleccionado:", values)
-    return values
+def selecElementoTablaFerreteria(codigo):
+    codigoBuscado=codigo
+    if codigoBuscado=="":
+        return
+    codigoEncontrado=busqElementoTablaFerreteria(codigoBuscado)
+    if codigoEncontrado:
+        tablaFerreteria.selection_set(codigoEncontrado)
+        tablaFerreteria.focus(codigoEncontrado)
+
+
                 
 
     
