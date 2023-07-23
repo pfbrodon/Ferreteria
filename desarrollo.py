@@ -386,16 +386,18 @@ def actualizaTabla(stock,codigo):
             
 def busqElementoTablaFerreteria(codigoBuscado):
     for item in tablaRemito.get_children():
+        print(item)
         if codigoBuscado==tablaRemito.item(item,'text'):
-            print(item)
+            
+            print(f'el resultado de la funcion busqElelemtoTablaFerreteria es: {item}')
             return item
         break
 
-def selecElementoTablaFerreteria(codigo):
-    codigoBuscado=codigo
+def selecElementoTablaFerreteria(codigoBuscado):
     if codigoBuscado=="":
         return
     codigoEncontrado=busqElementoTablaFerreteria(codigoBuscado)
+    print (f'el codigo encontrado es: {codigoEncontrado}')
     if codigoEncontrado:
         tablaFerreteria.selection_set(codigoEncontrado)
         tablaFerreteria.focus(codigoEncontrado)
