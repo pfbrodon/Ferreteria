@@ -334,7 +334,7 @@ def modiCantTablaRemito():
         valorCodigo = (tablaRemito.item(seleccionDato)["text"])
         print (f'los valores para la seleccion a modificar son: {valores}')
         print (valorCodigo)
-        #modiContTablaRemito()
+        selecElementoTablaFerreteria(valorCodigo)
         # Solicitar al usuario ingresar el nuevo valor
         nuevoValorStock= askstring("Modificar valor", "Ingrese el nuevo valor", initialvalue=valores[2])
         if nuevoValorStock:
@@ -352,11 +352,9 @@ def modiCantTablaRemito():
                 actualizaTabla(valorActTabla,valorCodigo)#actualiza la tabla con el nuevo valor del treeview remito
                 entradaCantidad.delete(0, tk.END)#borra el valor de la entrada stock
                 entradaCantidad.insert(0,valorActTabla)#actualiza el valor de la entrada stock con el nuevo valor de la tabla
-                selecElementoTablaFerreteria(valorCodigo)
-                
-                #tablaFerreteria.set(selecElementoTablaFerreteria(valorCodigo),column='#3' ,value=valorActTabla)
-
-                
+                ########selecElementoTablaFerreteria(valorCodigo)
+                seleccionDatoFerreteria=tablaFerreteria.focus()
+                tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
             elif nuevoValorStock<valorEnTreeView:
                 print ("REALIZAR UNA SUMA EN LA TABLA FERRETERIA Y EN EL TREEVIEW FERRETERIA")
             elif nuevoValorStock==valorEnTreeView:
