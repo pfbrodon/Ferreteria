@@ -5,6 +5,7 @@ from tkinter import ttk
 import os
 from tkinter.font import Font
 from tkinter.simpledialog import askstring
+import customtkinter as ctk
 
 
 ##CORRECCION DE RUTA DE ARCHIVOS#########################################
@@ -470,26 +471,26 @@ style= ttk.Style()
 style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
 style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
 
-btn1=ttk.Button(ventanaRemito,text='INSERTAR',command=insertarTablaRemito,style='EstiloBotonRemito1.TButton',width=25)
+btn1=ctk.CTkButton(ventanaRemito,text='INSERTAR',command=insertarTablaRemito,fg_color="green", border_color='gray', hover_color='gray',text_color='black', border_width=1)
 btn1.place(x=540,y=145)
 #######################################
-btn2=ttk.Button(ventanaRemito,  text='BUSCAR CODIGO', command=busquedaCodigo,style='EstiloBotonRemito2.TButton',width=25)
+btn2=ctk.CTkButton(ventanaRemito,  text='BUSCAR CODIGO', command=busquedaCodigo,width=100, corner_radius=3)
 btn2.place(x=540,y=90)
 #######################################
-btn3=ttk.Button(ventanaRemito, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,style='EstiloBotonRemito2.TButton',width=25)
+btn3=ctk.CTkButton(ventanaRemito, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,width=50)
 btn3.place(x=540,y=50)
 #######################################
-btn4=ttk.Button(ventanaRemito,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,style='EstiloBotonRemito2.TButton')
+btn4=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,width=50)
 btn4.place(x=300,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ttk.Button(ventanaRemito ,text='BAJA PRODUCTO', command=borrarProductoRemito,style='EstiloBotonRemito2.TButton')
+btn7=ctk.CTkButton(ventanaRemito ,text='BAJA PRODUCTO', command=borrarProductoRemito,width=50)
 btn7.place(x=10,y=145)
 #######################################
-btn8=ttk.Button(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,style='EstiloBotonRemito2.TButton')
+btn8=ctk.CTkButton(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,width=50)
 btn8.place(x=150,y=145)
 #######################################
-btn10=ttk.Button(ventanaRemito, text='MODIF', command=modiCantTablaRemito,style='EstiloBotonRemito2.TButton',width=25)
+btn10=ctk.CTkButton(ventanaRemito, text='MODIFICAR', command=modiCantTablaRemito,width=50)
 btn10.place(x=540,y=10)
 ################################################################################
 
