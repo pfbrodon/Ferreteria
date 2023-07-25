@@ -20,8 +20,9 @@ ventanaRemito.geometry("730x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PA
 ventanaRemito.title("GENERACION DE REMITOS")#TITULO
 ventanaRemito.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
 ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito
-ventanaRemito.bind('<F1>', lambda event: activarValorizar())
+ventanaRemito.bind('<F1>', lambda event: activarInsertarEnRemito())
 ventanaRemito.bind('<F2>', lambda event: activarCargaLPrecios())
+ventanaRemito.bind('<F3>', lambda event: activarModificarItemRemito())
 fuenteNegrita = Font(weight="bold")
 spinbox = ttk.Spinbox()
 #CREACION DE UN MARCO#########################################
@@ -462,36 +463,38 @@ lblPrecioVP.place(x=220,y=110)
 lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: $ 0.00-"),font=fuenteNegrita,background='lightblue')
 lblValorTotal.place(x=400,y=670)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
-def activarValorizar():
-    btn1.invoke()
+def activarInsertarEnRemito():
+    btnInsertarEnRemito.invoke()
 def activarCargaLPrecios():
-    btn4.invoke()
+    btnCargaLPrecios.invoke()
+def activarModificarItemRemito():
+    btnModificarIRemito.invoke()
 #BOTONES#########################################################################################
 style= ttk.Style()
 style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
 style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
 ctkWith=175
-btn1=ctk.CTkButton(ventanaRemito,text='INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray', hover_color='gray',text_color='white', border_width=1,width=ctkWith)
-btn1.place(x=540,y=145)
+btnInsertarEnRemito=ctk.CTkButton(ventanaRemito,text='F1-INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray', hover_color='gray',text_color='white', border_width=1,width=ctkWith)
+btnInsertarEnRemito.place(x=540,y=145)
 #######################################
-btn2=ctk.CTkButton(ventanaRemito,  text='BUSCAR\n CODIGO', command=busquedaCodigo,width=ctkWith,  border_color='gray', corner_radius=5, border_width=1)
-btn2.place(x=540,y=100)
+btnBuscarCodigo=ctk.CTkButton(ventanaRemito,  text='BUSCAR\n CODIGO', command=busquedaCodigo,width=ctkWith,  border_color='gray', corner_radius=5, border_width=1)
+btnBuscarCodigo.place(x=540,y=100)
 #######################################
-btn3=ctk.CTkButton(ventanaRemito, text='BUSCAR\n DESCRIPCION', command=busquedaDescripcion,width=ctkWith, border_color='gray', border_width=1)
-btn3.place(x=540,y=55)
+btnBuscaDescripcion=ctk.CTkButton(ventanaRemito, text='BUSCAR\n DESCRIPCION', command=busquedaDescripcion,width=ctkWith, border_color='gray', border_width=1)
+btnBuscaDescripcion.place(x=540,y=55)
 #######################################
-btn4=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA\n DE PRECIOS', command=mostarTabla,width=160, border_color='gray', border_width=1)
-btn4.place(x=340,y=145)
+btnCargaLPrecios=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA\n DE PRECIOS', command=mostarTabla,width=160, border_color='gray', border_width=1)
+btnCargaLPrecios.place(x=365,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ctk.CTkButton(ventanaRemito ,text='BAJA\n PRODUCTO', command=borrarProductoRemito,width=160, border_color='gray', border_width=1)
-btn7.place(x=10,y=145)
+btnBajaProducto=ctk.CTkButton(ventanaRemito ,text='BAJA\n PRODUCTO', command=borrarProductoRemito,width=160, border_color='gray', border_width=1)
+btnBajaProducto.place(x=15,y=145)
 #######################################
-btn8=ctk.CTkButton(ventanaRemito,  text='LIMPIAR\n ENTRADA', command=limpiarEntry,width=160, border_color='gray', border_width=1)
-btn8.place(x=175,y=145)
+btnLimpiarEntrada=ctk.CTkButton(ventanaRemito,  text='LIMPIAR\n ENTRADA', command=limpiarEntry,width=160, border_color='gray', border_width=1)
+btnLimpiarEntrada.place(x=190,y=145)
 #######################################
-btn10=ctk.CTkButton(ventanaRemito, text='MODIFICAR\n ITEM REMITO', command=modiCantTablaRemito,width=ctkWith, border_color='gray', border_width=1)
-btn10.place(x=540,y=10)
+btnModificarIRemito=ctk.CTkButton(ventanaRemito, text='F3-MODIFICAR\n ITEM REMITO', command=modiCantTablaRemito,width=ctkWith, border_color='gray', border_width=1)
+btnModificarIRemito.place(x=540,y=10)
 ################################################################################
 
 ################################################################################
@@ -507,7 +510,7 @@ style.configure("Treeview",
                 fieldbackground="white"
                 )
 tablaFerreteria=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
-tablaFerreteria.place(x=10,y=190,width=710,height=150)
+tablaFerreteria.place(x=10,y=190,width=710,height=160)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
 tablaFerreteria.column('#1', width=40)
@@ -526,7 +529,7 @@ tablaFerreteria.bind("<<TreeviewSelect>>", capturaSeleccion)
 ################################################################################
 ###TREE VIEW- TABLA#############################################################
 tablaRemito=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4','#5'))
-tablaRemito.place(x=10,y=360,width=710,height=300)
+tablaRemito.place(x=10,y=370,width=710,height=290)
 tablaRemito.column('#0', width=18,anchor='e')
 tablaRemito.heading('#0',text="CODIGO",anchor='center',)
 tablaRemito.column('#1', width=40)
