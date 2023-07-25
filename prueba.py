@@ -1,44 +1,32 @@
 import tkinter as tk
 from tkinter import ttk
 
-def modificar_datos_seleccionados():
-    # Obtener el índice del elemento seleccionado
-    seleccion = tree.selection()
-    if seleccion:
-        indice = tree.index(seleccion)
-        print(indice)
-        # Obtener los valores del elemento seleccionado
-        item = tree.item(seleccion)
-        valores = item["values"]
-        
-        # Modificar los valores del elemento seleccionado
-        nuevos_valores = (valores[0] + " (modificado)", valores[1] + " (modificado)")
-        
-        # Actualizar el elemento en el TreeView
-        tree.item(seleccion, values=nuevos_valores)
+def hacer_foco_y_mover_scroll(treeview, index):
+    # Hacer foco en el elemento deseado
+    treeview.focus_set()  # Establecer el foco en el TreeView
+    treeview.selection_set(index)  # Seleccionar el elemento por su índice
+    treeview.focus(index)  # Establecer el foco en el elemento seleccionado
 
-# Crear la ventana principal
+    # Mover el scroll para mostrar el elemento seleccionado
+    treeview.see(index)
+
+# Crear la ventana
 ventana = tk.Tk()
+ventana.title("Ejemplo TreeView")
 
 # Crear el TreeView
-tree = ttk.Treeview(ventana)
-tree["columns"] = ("columna1", "columna2")  # Definir las columnas del TreeView
-tree.heading("#0", text="Dato")  # Encabezado de la primera columna
-tree.heading("columna1", text="Columna 1")  # Encabezado de la segunda columna
-tree.heading("columna2", text="Columna 2")  # Encabezado de la tercera columna
-tree.pack()
+mi_treeview = ttk.Treeview(ventana)
+mi_treeview.pack()
 
-# Agregar algunos datos al TreeView
-datos = [
-    ("Dato 1", "Valor 1"),
-    ("Dato 2", "Valor 2"),
-    ("Dato 3", "Valor 3")
-]
-for dato in datos:
-    tree.insert("", "end", values=dato)
+# Agregar algunos elementos de ejemplo al TreeView
+for i in range(1, 21):
+    mi_treeview.insert("", "end", text=f"Elemento {i}")
 
-# Botón para modificar los datos seleccionados
-boton_modificar = tk.Button(ventana, text="Modificar", command=modificar_datos_seleccionados)
-boton_modificar.pack()
+# Índice del elemento que deseas mostrar (puede ser cualquier número válido)
+indice_deseado = 15
 
+# Hacer foco y mover el scroll para mostrar el elemento deseado
+hacer_foco_y_mover_scroll(mi_treeview, indice_deseado)
+
+# Ejecutar la ventana
 ventana.mainloop()

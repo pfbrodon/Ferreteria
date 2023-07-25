@@ -335,6 +335,7 @@ def modiCantTablaRemito():
         print (f'los valores para la seleccion a modificar son: {valores}')
         print (valorCodigo)
         selecElementoTablaFerreteria(valorCodigo)
+        #tablaFerreteria.see(valorCodigo)
         # Solicitar al usuario ingresar el nuevo valor
         nuevoValorStock= askstring("Modificar valor", "Ingrese el nuevo valor", initialvalue=valores[2])
         if nuevoValorStock:
