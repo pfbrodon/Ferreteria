@@ -71,8 +71,8 @@ def busquedaCodigo():#POR CODIGO
     entradaCategoria.insert(0,columna[1])
     entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
     entradaDescripcion.insert(0,columna[2])
-    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-    entradaCantidad.insert(0,columna[3])
+    entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaStock.insert(0,columna[3])
     entradaPrecio.delete(0, tk.END)  # Limpiar el contenido previo
     entradaPrecio.insert(0,columna[4])
     entradaPrecioVP.delete(0, tk.END)  # Limpiar el contenido previo
@@ -94,8 +94,8 @@ def busquedaDescripcion():#POR DESCRIPCION
     entradaCategoria.insert(0,columna[1])
     entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
     entradaDescripcion.insert(0,columna[2])
-    entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-    entradaCantidad.insert(0,columna[3])
+    entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+    entradaStock.insert(0,columna[3])
     entradaPrecio.delete(0, tk.END)  # Limpiar el contenido previo
     entradaPrecio.insert(0,columna[4])
     entradaPrecioVP.delete(0, tk.END)  # Limpiar el contenido previo
@@ -124,8 +124,8 @@ def imprimirSeleccion(event):
         entradaCategoria.insert(0,valor[0])
         entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
         entradaDescripcion.insert(0,valor[1])
-        entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-        entradaCantidad.insert(0,valor[2])
+        entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+        entradaStock.insert(0,valor[2])
         nuevoRango=valor[2]
         #print(valor[2])
         #print valor
@@ -172,14 +172,14 @@ def insertarTablaRemito():
         varCantidad=(spinbox.get())
         varPrecioUnit=float(entradaPrecio.get())
         varPrecioVPublico=float(entradaPrecioVP.get())
-        varStock=int(entradaCantidad.get())
+        varStock=int(entradaStock.get())
         #print (f"el varlor es:{varCantidad}")
         varSubtotal=(float(varCantidad)*varPrecioVPublico)
         tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
         #######resta de cantidad de productos###############################################
         stockDisminuido=varStock-(int(varCantidad))
-        entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-        entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
+        entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+        entradaStock.insert(0,stockDisminuido)#actualiza el stock en la entrada
         ######DISMINUCION DE LA TABLA FERRETERIA############################################
         mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
         cursor=mi_conexion.cursor() 
@@ -208,7 +208,7 @@ def insertarTablaRemito():
         #print('la cantidad es '+varCantidad)
         varCodigo=int(entradaCodigo.get())
         varPrecioVPublico=float(entradaPrecioVP.get())
-        varStock=int(entradaCantidad.get())
+        varStock=int(entradaStock.get())
         #valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
         for valorRemito in tablaRemito.get_children():#recorre los elementos text de la tablaRemito
             valorCodigoenRemito=tablaRemito.item(valorRemito,'text')
@@ -232,8 +232,8 @@ def insertarTablaRemito():
             tablaRemito.item(valorRemito,values=nuevosValoresRemito)
             #######RESTA CANTIDAD DE PRODUCTOS DE LA ENTRADA###############################################
             stockDisminuido=varStock-(int(varCantidad))
-            entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-            entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
+            entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+            entradaStock.insert(0,stockDisminuido)#actualiza el stock en la entrada
             ######DISMINUCION DE LA TABLA FERRETERIA############################################
             mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
             cursor=mi_conexion.cursor() 
@@ -260,14 +260,14 @@ def insertarTablaRemito():
             varCantidad=(spinbox.get())
             varPrecioUnit=float(entradaPrecio.get())
             varPrecioVPublico=float(entradaPrecioVP.get())
-            varStock=int(entradaCantidad.get())
+            varStock=int(entradaStock.get())
             #print (f"el varlor es:{varCantidad}")
             varSubtotal=(float(varCantidad)*varPrecioVPublico)
             tablaRemito.insert("",0,text=varCodigo, values=(varCategoria,varDescripcion,varCantidad,formatoDecimal(varPrecioUnit),formatoDecimal(varPrecioVPublico),formatoDecimal(varSubtotal)))
             #######resta de cantidad de productos###############################################
             stockDisminuido=varStock-(int(varCantidad))
-            entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-            entradaCantidad.insert(0,stockDisminuido)#actualiza el stock en la entrada
+            entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+            entradaStock.insert(0,stockDisminuido)#actualiza el stock en la entrada
             ######DISMINUCION DE LA TABLA FERRETERIA############################################
             mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
             cursor=mi_conexion.cursor() 
@@ -299,8 +299,8 @@ def capturaSeleccion(event):
         entradaCategoria.insert(0,valoresSelec[0])
         entradaDescripcion.delete(0, tk.END)  # Limpiar el contenido previo
         entradaDescripcion.insert(0,valoresSelec[1])
-        entradaCantidad.delete(0, tk.END)  # Limpiar el contenido previo
-        entradaCantidad.insert(0,valoresSelec[2])
+        entradaStock.delete(0, tk.END)  # Limpiar el contenido previo
+        entradaStock.insert(0,valoresSelec[2])
         nuevoRango=valoresSelec[2]
         #print(valoresSelec[2])
         #print (f"el valor para spinbox es: {nuevoRango}") #impresion de ayuda
@@ -324,7 +324,7 @@ def limpiarEntry():
     entradaCodigo.delete(0, tk.END)
     entradaCategoria.delete(0, tk.END)
     entradaDescripcion.delete(0, tk.END)
-    entradaCantidad.delete(0, tk.END)
+    entradaStock.delete(0, tk.END)
     entradaPrecio.delete(0, tk.END)
     entradaPrecioVP.delete(0, tk.END)
     
@@ -353,8 +353,8 @@ def modiCantTablaRemito():
                 valorActTabla=leerItemTabla(valorCodigo)-valorDecremento
                 print (valorActTabla)
                 actualizaTabla(valorActTabla,valorCodigo)#actualiza la tabla con el nuevo valor del treeview remito
-                entradaCantidad.delete(0, tk.END)#borra el valor de la entrada stock
-                entradaCantidad.insert(0,valorActTabla)#actualiza el valor de la entrada stock con el nuevo valor de la tabla
+                entradaStock.delete(0, tk.END)#borra el valor de la entrada stock
+                entradaStock.insert(0,valorActTabla)#actualiza el valor de la entrada stock con el nuevo valor de la tabla
                 ########selecElementoTablaFerreteria(valorCodigo)
                 seleccionDatoFerreteria=tablaFerreteria.focus()
                 tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
@@ -419,9 +419,11 @@ def sumaSubTotales():
     
 ##################################################################################################   
 #INICIALIZACION DE VARIABLES######################################################################
-codigoBusq=int()
+codigoBusq=str()
 descripcionBusq=()
-itemTabla=()
+itemTabla=str()
+itemTabla2=int()
+itemTabla3=float()
 sumaStock=()
 spinCant= 0
 ##SPINBOX##########################################################################################
@@ -430,32 +432,33 @@ spinbox.place(x=420,y=108)
 
 #ENTRY#############################################################################################
 varUbicacion=ventanaRemito
-entradaCodigo=ttk.Entry(varUbicacion,font=("Arial",10),width=7 ,justify="right",textvariable=codigoBusq)
-entradaCodigo.place(x=65,y=48)
-entradaCategoria=ttk.Entry(varUbicacion,font=("Arial",10),width=12, textvariable=itemTabla)
-entradaCategoria.place(x=200,y=48)
-entradaDescripcion=ttk.Entry(varUbicacion,font=("Arial",10),width=50, textvariable=itemTabla)
-entradaDescripcion.place(x=100,y=78)
-entradaCantidad=ttk.Entry(varUbicacion,font=("Arial",10),width=5,justify="right",textvariable=itemTabla)
-entradaCantidad.place(x=420,y=48)
-entradaPrecio=ttk.Entry(varUbicacion,font=("Arial",10),width=10,justify="right", textvariable=itemTabla)
-entradaPrecio.place(x=110,y=108)
-entradaPrecioVP=ttk.Entry(varUbicacion,font=("Arial",10),width=10,justify="right",textvariable=itemTabla)
-entradaPrecioVP.place(x=290,y=108)
+entradaCodigo=ctk.CTkEntry(varUbicacion,width=70,textvariable=codigoBusq)
+entradaCodigo.place(x=70,y=28)
+
+entradaCategoria=ctk.CTkEntry(varUbicacion,width=100, textvariable=itemTabla)
+entradaCategoria.place(x=230,y=28)
+
+entradaStock=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=55)
+entradaStock.place(x=470,y=28)
+
+entradaDescripcion=ctk.CTkEntry(ventanaRemito,textvariable=itemTabla,width=410)
+entradaDescripcion.place(x=110,y=68)
+
+entradaPrecio=ctk.CTkEntry(varUbicacion, textvariable=itemTabla,width=100)
+entradaPrecio.place(x=115,y=108)
+
+entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100)
+entradaPrecioVP.place(x=300,y=108)
 #ETIQUETAS#####################################################################################
-lbl1=ttk.Label(ventanaRemito, text='VALOR DE STOCK CARGADO EN REMITO:',background='lightblue')
-lbl1.place(x=10,y=10)
-lbl10=ttk.Label(ventanaRemito, text='____________',background='lightblue')
-lbl10.place(x=240,y=8)
 ########################################################
 lblCodigo=ttk.Label(ventanaRemito, text='CODIGO:',background='lightblue')
-lblCodigo.place(x=10,y=50)
+lblCodigo.place(x=10,y=30)
 lblCategoria=ttk.Label(ventanaRemito, text='CATEGORIA:',background='lightblue')
-lblCategoria.place(x=125,y=50)
+lblCategoria.place(x=145,y=30)
+lblStock=ttk.Label(ventanaRemito, text='STOCK DSIPONIBLE:',background='lightblue')
+lblStock.place(x=335,y=30)
 lblDescripcion=ttk.Label(ventanaRemito, text='DESCRIPCION:',background='lightblue')
-lblDescripcion.place(x=10,y=80)
-lblCantidad=ttk.Label(ventanaRemito, text='STOCK DSIPONIBLE:',background='lightblue')
-lblCantidad.place(x=300,y=50)
+lblDescripcion.place(x=10,y=70)
 lblPrecio=ttk.Label(ventanaRemito, text='PRECIO COSTO:',background='lightblue')
 lblPrecio.place(x=10,y=110)
 lblPrecioVP=ttk.Label(ventanaRemito, text='PRECIO VP:',background='lightblue')
@@ -510,7 +513,7 @@ style.configure("Treeview",
                 fieldbackground="white"
                 )
 tablaFerreteria=ttk.Treeview(ventanaRemito,height=20,show='tree headings',columns=('#0', '#1','#2','#3','#4'))
-tablaFerreteria.place(x=10,y=190,width=710,height=160)
+tablaFerreteria.place(x=10,y=195,width=710,height=160)
 tablaFerreteria.column('#0', width=20,anchor='e')
 tablaFerreteria.heading('#0',text="CODIGO",anchor='center',)
 tablaFerreteria.column('#1', width=40)
