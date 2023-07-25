@@ -470,27 +470,27 @@ def activarCargaLPrecios():
 style= ttk.Style()
 style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
 style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
-
-btn1=ctk.CTkButton(ventanaRemito,text='INSERTAR',command=insertarTablaRemito,fg_color="green", border_color='gray', hover_color='gray',text_color='black', border_width=1)
+ctkWith=175
+btn1=ctk.CTkButton(ventanaRemito,text='INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray', hover_color='gray',text_color='white', border_width=1,width=ctkWith)
 btn1.place(x=540,y=145)
 #######################################
-btn2=ctk.CTkButton(ventanaRemito,  text='BUSCAR CODIGO', command=busquedaCodigo,width=100, corner_radius=3)
-btn2.place(x=540,y=90)
+btn2=ctk.CTkButton(ventanaRemito,  text='BUSCAR\n CODIGO', command=busquedaCodigo,width=ctkWith,  border_color='gray', corner_radius=5, border_width=1)
+btn2.place(x=540,y=100)
 #######################################
-btn3=ctk.CTkButton(ventanaRemito, text='BUSCAR DESCRIPCION', command=busquedaDescripcion,width=50)
-btn3.place(x=540,y=50)
+btn3=ctk.CTkButton(ventanaRemito, text='BUSCAR\n DESCRIPCION', command=busquedaDescripcion,width=ctkWith, border_color='gray', border_width=1)
+btn3.place(x=540,y=55)
 #######################################
-btn4=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA DE PRECIOS', command=mostarTabla,width=50)
-btn4.place(x=300,y=145)
+btn4=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA\n DE PRECIOS', command=mostarTabla,width=160, border_color='gray', border_width=1)
+btn4.place(x=340,y=145)
 # #mostrarModificar(False)
 #######################################
-btn7=ctk.CTkButton(ventanaRemito ,text='BAJA PRODUCTO', command=borrarProductoRemito,width=50)
+btn7=ctk.CTkButton(ventanaRemito ,text='BAJA\n PRODUCTO', command=borrarProductoRemito,width=160, border_color='gray', border_width=1)
 btn7.place(x=10,y=145)
 #######################################
-btn8=ctk.CTkButton(ventanaRemito,  text='LIMPIAR ENTRADA', command=limpiarEntry,width=50)
-btn8.place(x=150,y=145)
+btn8=ctk.CTkButton(ventanaRemito,  text='LIMPIAR\n ENTRADA', command=limpiarEntry,width=160, border_color='gray', border_width=1)
+btn8.place(x=175,y=145)
 #######################################
-btn10=ctk.CTkButton(ventanaRemito, text='MODIFICAR', command=modiCantTablaRemito,width=50)
+btn10=ctk.CTkButton(ventanaRemito, text='MODIFICAR\n ITEM REMITO', command=modiCantTablaRemito,width=ctkWith, border_color='gray', border_width=1)
 btn10.place(x=540,y=10)
 ################################################################################
 
