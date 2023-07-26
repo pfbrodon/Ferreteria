@@ -350,6 +350,7 @@ def modiCantTablaRemito():
                 ########selecElementoTablaFerreteria(valorCodigo)
                 seleccionDatoFerreteria=tablaFerreteria.focus()
                 tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
+                sumaSubTotales()
             elif nuevoValorStock<valorEnTreeView:
                 valorIncremento=valorEnTreeView-nuevoValorStock
                 print(f'el valor de valorIncremento es: {valorIncremento}')
@@ -361,6 +362,7 @@ def modiCantTablaRemito():
                 entradaStock.insert(0,valorActTabla)
                 seleccionDatoFerreteria=tablaFerreteria.focus()
                 tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
+                sumaSubTotales()
             elif nuevoValorStock==valorEnTreeView:
                 print("no hacer nada")
                 
@@ -401,6 +403,10 @@ def selecElementoTablaFerreteria(codigoBuscado):
     if codigoEncontrado:
         tablaFerreteria.selection_set(codigoEncontrado)
         tablaFerreteria.focus(codigoEncontrado)
+###PRODUCTO DE CANTIDADES POR PVP#################################################################
+def productoCantRemito(varCantidad,varPrecioVPublico):
+    varSubtotal=(float(varCantidad)*varPrecioVPublico)
+
 
 ########SUMA SUBTOTALES###########################################################################
 def sumaSubTotales():
