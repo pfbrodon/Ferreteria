@@ -6,9 +6,7 @@ import os
 from tkinter.font import Font
 from tkinter.simpledialog import askstring
 import customtkinter as ctk
-ventanaRemito = ctk.CTk()
-ventanaRemito.geometry("730x700+10+10")
-ventanaRemito.title("CTk example")
+
 
 
 ##CORRECCION DE RUTA DE ARCHIVOS#########################################
@@ -18,20 +16,16 @@ os.chdir(dirDeTrabajo)
 ###########################################################################
 
 #CONFIGURACION INICIAL VENTANARemito PRINCIPAL
-'''ventanaRemito=tk.Tk()
-ventanaRemito.geometry("730x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
-ventanaRemito.title("GENERACION DE REMITOS")#TITULO
-ventanaRemito.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
-ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito'''
+ventanaRemito = ctk.CTk()
+ventanaRemito.geometry("730x700+10+10")
+ventanaRemito.title("FORMULARIO REMITO")
 ventanaRemito.bind('<F1>', lambda event: activarInsertarEnRemito())
 ventanaRemito.bind('<F2>', lambda event: activarCargaLPrecios())
 ventanaRemito.bind('<F3>', lambda event: activarModificarItemRemito())
-fuenteNegrita = Font(weight="bold")
 spinbox = ttk.Spinbox()
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
 
-cuadro1=Frame(ventanaRemito,width=500,height=480)
 
 ############################################################################################
 ##FUNCION DE FORMATO DECIMAL Y SEPARADOR DE MILES
@@ -399,10 +393,6 @@ def selecElementoTablaFerreteria(codigoBuscado):
         tablaFerreteria.selection_set(codigoEncontrado)
         tablaFerreteria.focus(codigoEncontrado)
 
-
-                
-
-    
 ########SUMA SUBTOTALES###########################################################################
 def sumaSubTotales():
         valoresRemito=tablaRemito.get_children()#lee todos los valores del treeview tablaRemito
@@ -413,8 +403,6 @@ def sumaSubTotales():
             sumaSubTotales=sumaSubTotales+(float(valorSubtotal))
         lblValorTotal.config(text=(f"TOTAL STOCK CARGADO: ${sumaSubTotales:,.2f}-"),font=fuenteNegrita) 
 
-    
-    
 ##################################################################################################   
 #INICIALIZACION DE VARIABLES######################################################################
 codigoBusq=str()
@@ -430,22 +418,22 @@ spinbox.place(x=420,y=108)
 
 #ENTRY#############################################################################################
 varUbicacion=ventanaRemito
-entradaCodigo=ctk.CTkEntry(varUbicacion,width=70,textvariable=codigoBusq)
+entradaCodigo=ctk.CTkEntry(varUbicacion,width=70,textvariable=codigoBusq,justify='right')
 entradaCodigo.place(x=70,y=28)
 
 entradaCategoria=ctk.CTkEntry(varUbicacion,width=100, textvariable=itemTabla)
 entradaCategoria.place(x=230,y=28)
 
-entradaStock=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=55)
+entradaStock=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=55,justify='right')
 entradaStock.place(x=470,y=28)
 
 entradaDescripcion=ctk.CTkEntry(ventanaRemito,textvariable=itemTabla,width=410)
 entradaDescripcion.place(x=110,y=68)
 
-entradaPrecio=ctk.CTkEntry(varUbicacion, textvariable=itemTabla,width=100)
+entradaPrecio=ctk.CTkEntry(varUbicacion, textvariable=itemTabla,width=100,justify='right')
 entradaPrecio.place(x=115,y=108)
 
-entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100)
+entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100,justify='right')
 entradaPrecioVP.place(x=300,y=108)
 #ETIQUETAS#####################################################################################
 ########################################################
@@ -474,8 +462,8 @@ def activarModificarItemRemito():
     btnModificarIRemito.invoke()
 #BOTONES#########################################################################################
 style= ttk.Style()
-style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
-style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))
+'''style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
+style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))'''
 ctkWith=175
 btnInsertarEnRemito=ctk.CTkButton(ventanaRemito,text='F1-INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray', hover_color='gray',text_color='white', border_width=1,width=ctkWith)
 btnInsertarEnRemito.place(x=540,y=145)
@@ -551,5 +539,4 @@ tablaRemito.bind("<ButtonRelease-1>", seleccionMouseTablaRemito)
 
 
 mostarTabla()
-ventanaRemito.mainloop()
 ventanaRemito.mainloop()
