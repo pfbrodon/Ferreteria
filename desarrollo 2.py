@@ -6,6 +6,9 @@ import os
 from tkinter.font import Font
 from tkinter.simpledialog import askstring
 import customtkinter as ctk
+ventanaRemito = ctk.CTk()
+ventanaRemito.geometry("730x700+10+10")
+ventanaRemito.title("CTk example")
 
 
 ##CORRECCION DE RUTA DE ARCHIVOS#########################################
@@ -15,11 +18,11 @@ os.chdir(dirDeTrabajo)
 ###########################################################################
 
 #CONFIGURACION INICIAL VENTANARemito PRINCIPAL
-ventanaRemito=tk.Tk()
+'''ventanaRemito=tk.Tk()
 ventanaRemito.geometry("730x700+10+10")#TAMAÑO Y UBICACION CON RESPECTO A LA PANTALLA                                                    
 ventanaRemito.title("GENERACION DE REMITOS")#TITULO
 ventanaRemito.resizable(width=False,height=False)#BLOQUEO DE REDIMENSION
-ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito
+ventanaRemito.configure(background="lightblue")#COLOR DE FONDO DE VENTANARemito'''
 ventanaRemito.bind('<F1>', lambda event: activarInsertarEnRemito())
 ventanaRemito.bind('<F2>', lambda event: activarCargaLPrecios())
 ventanaRemito.bind('<F3>', lambda event: activarModificarItemRemito())
@@ -27,6 +30,7 @@ fuenteNegrita = Font(weight="bold")
 spinbox = ttk.Spinbox()
 ##Crear una fuente con negrita#################################
 fuenteNegrita = Font(weight="bold")
+
 cuadro1=Frame(ventanaRemito,width=500,height=480)
 
 ############################################################################################
@@ -446,7 +450,7 @@ entradaPrecioVP.place(x=300,y=108)
 #ETIQUETAS#####################################################################################
 ########################################################
 
-#label = customtkinter.CTkLabel(app, text="CTkLabel", fg_color="transparent")
+#label = customtkinter.CTkLabel(ventanaRemito, text="CTkLabel", fg_color="transparent")
 lblCodigo=ctk.CTkLabel(ventanaRemito, text='CODIGO:')
 lblCodigo.place(x=10,y=30)
 lblCategoria=ctk.CTkLabel(ventanaRemito, text='CATEGORIA:')
@@ -547,4 +551,5 @@ tablaRemito.bind("<ButtonRelease-1>", seleccionMouseTablaRemito)
 
 
 mostarTabla()
+ventanaRemito.mainloop()
 ventanaRemito.mainloop()
