@@ -451,19 +451,21 @@ entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100)
 entradaPrecioVP.place(x=300,y=108)
 #ETIQUETAS#####################################################################################
 ########################################################
-lblCodigo=ttk.Label(ventanaRemito, text='CODIGO:',background='lightblue')
+
+#label = customtkinter.CTkLabel(app, text="CTkLabel", fg_color="transparent")
+lblCodigo=ctk.CTkLabel(ventanaRemito, text='CODIGO:')
 lblCodigo.place(x=10,y=30)
-lblCategoria=ttk.Label(ventanaRemito, text='CATEGORIA:',background='lightblue')
+lblCategoria=ctk.CTkLabel(ventanaRemito, text='CATEGORIA:')
 lblCategoria.place(x=145,y=30)
-lblStock=ttk.Label(ventanaRemito, text='STOCK DSIPONIBLE:',background='lightblue')
+lblStock=ctk.CTkLabel(ventanaRemito, text='STOCK DSIPONIBLE:')
 lblStock.place(x=335,y=30)
-lblDescripcion=ttk.Label(ventanaRemito, text='DESCRIPCION:',background='lightblue')
+lblDescripcion=ctk.CTkLabel(ventanaRemito, text='DESCRIPCION:')
 lblDescripcion.place(x=10,y=70)
-lblPrecio=ttk.Label(ventanaRemito, text='PRECIO COSTO:',background='lightblue')
+lblPrecio=ctk.CTkLabel(ventanaRemito, text='PRECIO COSTO:')
 lblPrecio.place(x=10,y=110)
-lblPrecioVP=ttk.Label(ventanaRemito, text='PRECIO VP:',background='lightblue')
+lblPrecioVP=ctk.CTkLabel(ventanaRemito, text='PRECIO VP:')
 lblPrecioVP.place(x=220,y=110)
-lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: $ 0.00-"),font=fuenteNegrita,background='lightblue')
+lblValorTotal=ttk.Label(ventanaRemito, text=(f"TOTAL STOCK CARGADO: $ 0.00-"),font=fuenteNegrita)
 lblValorTotal.place(x=400,y=670)
 #FUNCION PARA ASIGNAR TECLA F A UN BOTON
 def activarInsertarEnRemito():
