@@ -351,7 +351,16 @@ def modiCantTablaRemito():
                 seleccionDatoFerreteria=tablaFerreteria.focus()
                 tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
             elif nuevoValorStock<valorEnTreeView:
+                valorIncremento=valorEnTreeView-nuevoValorStock
+                print(f'el valor de valorIncremento es: {valorIncremento}')
                 print ("REALIZAR UNA SUMA EN LA TABLA FERRETERIA Y EN EL TREEVIEW FERRETERIA")
+                valorActTabla=leerItemTabla(valorCodigo)+valorIncremento
+                print(valorActTabla)
+                actualizaTabla(valorActTabla,valorCodigo)
+                entradaStock.delete(0, tk.END)
+                entradaStock.insert(0,valorActTabla)
+                seleccionDatoFerreteria=tablaFerreteria.focus()
+                tablaFerreteria.set(seleccionDatoFerreteria,column='#3' ,value=valorActTabla)
             elif nuevoValorStock==valorEnTreeView:
                 print("no hacer nada")
                 
@@ -359,14 +368,14 @@ def modiCantTablaRemito():
 def leerItemTabla(codigo):
             mi_conexion= sqlite3.connect("basededatosDesarrollo.db")  
             cursor=mi_conexion.cursor() 
-            instruccion= f"SELECT * FROM stockFerreteria WHERE codigo='{codigo}'"##columna like '%variable%' busca un item en la columna que contenga el parametro de busqueda
+            instruccion= f"SELECT * FROM stockFerreteria WHERE codigo='{codigo}'"
             cursor.execute(instruccion)
             datos=cursor.fetchall()
             mi_conexion.commit()
             mi_conexion.close()
             #print (datos)
             for valorDato in datos:
-                #print (valorDato[3])
+                print (valorDato[3])
                 valor=valorDato[3]
                 return valor
 def actualizaTabla(stock,codigo):
@@ -418,22 +427,22 @@ spinbox.place(x=420,y=108)
 
 #ENTRY#############################################################################################
 varUbicacion=ventanaRemito
-entradaCodigo=ctk.CTkEntry(varUbicacion,width=70,textvariable=codigoBusq,justify='right')
+entradaCodigo=ctk.CTkEntry(varUbicacion,width=70,textvariable=codigoBusq,justify='right',border_width=1)
 entradaCodigo.place(x=70,y=28)
 
-entradaCategoria=ctk.CTkEntry(varUbicacion,width=100, textvariable=itemTabla)
+entradaCategoria=ctk.CTkEntry(varUbicacion,width=100, textvariable=itemTabla,border_width=1)
 entradaCategoria.place(x=230,y=28)
 
-entradaStock=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=55,justify='right')
+entradaStock=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=55,justify='right',border_width=1)
 entradaStock.place(x=470,y=28)
 
-entradaDescripcion=ctk.CTkEntry(ventanaRemito,textvariable=itemTabla,width=410)
+entradaDescripcion=ctk.CTkEntry(ventanaRemito,textvariable=itemTabla,width=410,border_width=1)
 entradaDescripcion.place(x=110,y=68)
 
-entradaPrecio=ctk.CTkEntry(varUbicacion, textvariable=itemTabla,width=100,justify='right')
+entradaPrecio=ctk.CTkEntry(varUbicacion, textvariable=itemTabla,width=100,justify='right',border_width=1)
 entradaPrecio.place(x=115,y=108)
 
-entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100,justify='right')
+entradaPrecioVP=ctk.CTkEntry(varUbicacion,textvariable=itemTabla,width=100,justify='right',border_width=1)
 entradaPrecioVP.place(x=300,y=108)
 #ETIQUETAS#####################################################################################
 ########################################################
@@ -465,26 +474,26 @@ style= ttk.Style()
 '''style.configure("EstiloBotonRemito1.TButton", background="red", foreground="black", font=("Arial", 10, "bold"))
 style.configure("EstiloBotonRemito2.TButton", background="blue", foreground="black", font=("Arial", 10, "bold"))'''
 ctkWith=175
-btnInsertarEnRemito=ctk.CTkButton(ventanaRemito,text='F1-INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray', hover_color='gray',text_color='white', border_width=1,width=ctkWith)
+btnInsertarEnRemito=ctk.CTkButton(ventanaRemito,text='F1-INSERTAR EN\n REMITO',command=insertarTablaRemito, border_color='gray',text_color='white', border_width=1,width=ctkWith)
 btnInsertarEnRemito.place(x=540,y=145)
 #######################################
-btnBuscarCodigo=ctk.CTkButton(ventanaRemito,  text='BUSCAR\n CODIGO', command=busquedaCodigo,width=ctkWith,  border_color='gray', corner_radius=5, border_width=1)
+btnBuscarCodigo=ctk.CTkButton(ventanaRemito,  text='BUSCAR\n CODIGO', command=busquedaCodigo,width=ctkWith,  border_color='gray', text_color='white',corner_radius=5, border_width=1)
 btnBuscarCodigo.place(x=540,y=100)
 #######################################
-btnBuscaDescripcion=ctk.CTkButton(ventanaRemito, text='BUSCAR\n DESCRIPCION', command=busquedaDescripcion,width=ctkWith, border_color='gray', border_width=1)
+btnBuscaDescripcion=ctk.CTkButton(ventanaRemito, text='BUSCAR\n DESCRIPCION', command=busquedaDescripcion,width=ctkWith, border_color='gray',text_color='white',border_width=1)
 btnBuscaDescripcion.place(x=540,y=55)
 #######################################
-btnCargaLPrecios=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA\n DE PRECIOS', command=mostarTabla,width=160, border_color='gray', border_width=1)
+btnCargaLPrecios=ctk.CTkButton(ventanaRemito,  text='F2-CARGAR LISTA\n DE PRECIOS', command=mostarTabla,width=160, border_color='gray',text_color='white',border_width=1)
 btnCargaLPrecios.place(x=365,y=145)
 # #mostrarModificar(False)
 #######################################
-btnBajaProducto=ctk.CTkButton(ventanaRemito ,text='BAJA\n PRODUCTO', command=borrarProductoRemito,width=160, border_color='gray', border_width=1)
+btnBajaProducto=ctk.CTkButton(ventanaRemito ,text='BAJA\n PRODUCTO', command=borrarProductoRemito,width=160, border_color='gray',text_color='white',border_width=1)
 btnBajaProducto.place(x=15,y=145)
 #######################################
-btnLimpiarEntrada=ctk.CTkButton(ventanaRemito,  text='LIMPIAR\n ENTRADA', command=limpiarEntry,width=160, border_color='gray', border_width=1)
+btnLimpiarEntrada=ctk.CTkButton(ventanaRemito,  text='LIMPIAR\n ENTRADA', command=limpiarEntry,width=160, border_color='gray',text_color='white',border_width=1)
 btnLimpiarEntrada.place(x=190,y=145)
 #######################################
-btnModificarIRemito=ctk.CTkButton(ventanaRemito, text='F3-MODIFICAR\n ITEM REMITO', command=modiCantTablaRemito,width=ctkWith, border_color='gray', border_width=1)
+btnModificarIRemito=ctk.CTkButton(ventanaRemito, text='F3-MODIFICAR\n ITEM REMITO', command=modiCantTablaRemito,width=ctkWith, border_color='gray',text_color='white',border_width=1)
 btnModificarIRemito.place(x=540,y=10)
 ################################################################################
 
