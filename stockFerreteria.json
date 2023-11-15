@@ -1,0 +1,458 @@
+[
+    {
+        "cantidad": 8,
+        "categoria": "BULONERIA",
+        "codigo": 3,
+        "descripcion": "TORNILLO CABEZA HEXAGONAL M12X45",
+        "precioUnit": 560,
+        "precioVPublico": 510
+    },
+    {
+        "cantidad": 23,
+        "categoria": "BULONERIA",
+        "codigo": 4,
+        "descripcion": "TORNILLO FIX 6X55",
+        "precioUnit": 32.45,
+        "precioVPublico": 34.12
+    },
+    {
+        "cantidad": 34,
+        "categoria": "BULONERIA",
+        "codigo": 5,
+        "descripcion": "TORNILLO FIX 5X45",
+        "precioUnit": 23,
+        "precioVPublico": 23
+    },
+    {
+        "cantidad": 560,
+        "categoria": "BULONERIA",
+        "codigo": 6,
+        "descripcion": "TUERCA M10 DUREZA 8",
+        "precioUnit": 26,
+        "precioVPublico": 28
+    },
+    {
+        "cantidad": 789,
+        "categoria": "BULONERIA",
+        "codigo": 7,
+        "descripcion": "ARANDELA M6X20MM",
+        "precioUnit": 12,
+        "precioVPublico": 15
+    },
+    {
+        "cantidad": 343,
+        "categoria": "BULONERIA",
+        "codigo": 8,
+        "descripcion": "TORNILLO ALLEN M4X50 CABEZA CILINDRICA",
+        "precioUnit": 100,
+        "precioVPublico": 110
+    },
+    {
+        "cantidad": 234,
+        "categoria": "BULONERIA",
+        "codigo": 9,
+        "descripcion": "TORNILLO ALLEN M6X35 CABEZA CILINDRICA",
+        "precioUnit": 76,
+        "precioVPublico": 78
+    },
+    {
+        "cantidad": 500,
+        "categoria": "BULONERIA",
+        "codigo": 10,
+        "descripcion": "ARANDELA DE PRESION 1/4\" -",
+        "precioUnit": 13,
+        "precioVPublico": 15
+    },
+    {
+        "cantidad": 400,
+        "categoria": "BULONERIA",
+        "codigo": 11,
+        "descripcion": "ARANDELA GROOVER 5/8\"",
+        "precioUnit": 21,
+        "precioVPublico": 24
+    },
+    {
+        "cantidad": 50,
+        "categoria": "BULONERIA",
+        "codigo": 12,
+        "descripcion": "TORNILLO ALLEN CABEZA FRESASA M8X40",
+        "precioUnit": 100,
+        "precioVPublico": 105
+    },
+    {
+        "cantidad": 2323,
+        "categoria": "BULONERIA",
+        "codigo": 1,
+        "descripcion": "TORNILLO PARKER 3MM PHILIPS",
+        "precioUnit": 12,
+        "precioVPublico": 14
+    },
+    {
+        "cantidad": 400,
+        "categoria": "BULONERIA",
+        "codigo": 13,
+        "descripcion": "TORNILLO FIX 4.5X40",
+        "precioUnit": 20,
+        "precioVPublico": 23
+    },
+    {
+        "cantidad": 435,
+        "categoria": "BULONERIA",
+        "codigo": 14,
+        "descripcion": "TUERCA AUTOFRENANTE M8 ZINCADA",
+        "precioUnit": 25,
+        "precioVPublico": 26
+    },
+    {
+        "cantidad": 564,
+        "categoria": "BULONERIA",
+        "codigo": 15,
+        "descripcion": "TUERCA AUTOFRENANTE M6 ZINCADA",
+        "precioUnit": 20,
+        "precioVPublico": 23
+    },
+    {
+        "cantidad": 120,
+        "categoria": "BULONERIA",
+        "codigo": 16,
+        "descripcion": "TORNILLO CABEZA HEXAGONAL 3/8 WHITWORTH",
+        "precioUnit": 15,
+        "precioVPublico": 16
+    },
+    {
+        "cantidad": 300,
+        "categoria": "BULONERIA",
+        "codigo": 17,
+        "descripcion": "TORNILLO CABEZA HEXAGONAL 5/16 WHITWORTH",
+        "precioUnit": 14,
+        "precioVPublico": 15
+    },
+    {
+        "cantidad": 369,
+        "categoria": "BULONERIA",
+        "codigo": 18,
+        "descripcion": "ARANDELA BISELADA M8 ZINC",
+        "precioUnit": 20,
+        "precioVPublico": 24
+    },
+    {
+        "cantidad": 25,
+        "categoria": "FERRETERIA",
+        "codigo": 235,
+        "descripcion": "LIMA BASTARDA 10 PULGADAS",
+        "precioUnit": 2500,
+        "precioVPublico": 2950
+    },
+    {
+        "cantidad": 333,
+        "categoria": "BULONERIA",
+        "codigo": 34342,
+        "descripcion": "TORNILLO PRISIONERO M6",
+        "precioUnit": 34,
+        "precioVPublico": 50
+    },
+    {
+        "cantidad": 45,
+        "categoria": "FERRETERIA",
+        "codigo": 4586,
+        "descripcion": "LLAVE COMBINADA N19",
+        "precioUnit": 2000,
+        "precioVPublico": 2500
+    },
+    {
+        "cantidad": 10,
+        "categoria": "FERRETERIA",
+        "codigo": 6985,
+        "descripcion": "LLAVE COMBINADA N13",
+        "precioUnit": 1900,
+        "precioVPublico": 2400
+    },
+    {
+        "cantidad": 23,
+        "categoria": "FERRETERIA",
+        "codigo": 232424,
+        "descripcion": "LLAVE COMBINADA N12",
+        "precioUnit": 1300,
+        "precioVPublico": 1500
+    },
+    {
+        "cantidad": 234,
+        "categoria": "FERRETERIA",
+        "codigo": 45332,
+        "descripcion": "LLAVE FRANCESA 10 PULGADAS",
+        "precioUnit": 2300,
+        "precioVPublico": 3000.43
+    },
+    {
+        "cantidad": 12,
+        "categoria": "FERRETERIA",
+        "codigo": 4585,
+        "descripcion": "CALIBRE ANALOGICO ACERO INOX 150MM",
+        "precioUnit": 19000,
+        "precioVPublico": 25500
+    },
+    {
+        "cantidad": 15,
+        "categoria": "FERRETERIA",
+        "codigo": 8998,
+        "descripcion": "DESTORNILLADOR PLANO 4X150MM",
+        "precioUnit": 1500,
+        "precioVPublico": 1720.6
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 9854,
+        "descripcion": "BASE MAGNETIA ARTICULADA 300M",
+        "precioUnit": 35000,
+        "precioVPublico": 42562.36
+    },
+    {
+        "cantidad": 12,
+        "categoria": "FERRETERIA",
+        "codigo": 658,
+        "descripcion": "DESTORNILLADOR PH1X150MM",
+        "precioUnit": 1000,
+        "precioVPublico": 1253
+    },
+    {
+        "cantidad": 10,
+        "categoria": "FERRETERIA",
+        "codigo": 45875,
+        "descripcion": "MECHA ACERO RAPIDO 2MM",
+        "precioUnit": 450,
+        "precioVPublico": 510
+    },
+    {
+        "cantidad": 10,
+        "categoria": "FERRETERIA",
+        "codigo": 45869,
+        "descripcion": "MECHA ACERO RAPIDO 4MM",
+        "precioUnit": 560,
+        "precioVPublico": 595
+    },
+    {
+        "cantidad": 50,
+        "categoria": "FERRETERIA",
+        "codigo": 6958,
+        "descripcion": "FRESA AVELLANADORA M6 ENCASTRE 1/4",
+        "precioUnit": 3500,
+        "precioVPublico": 4002
+    },
+    {
+        "cantidad": 15,
+        "categoria": "FERRETERIA",
+        "codigo": 7485,
+        "descripcion": "TUBO ESTRIADO METRICO 15 1/2",
+        "precioUnit": 1400,
+        "precioVPublico": 1745
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 9658,
+        "descripcion": "NIVEL LASER 15M ALCANCE EJE X/Y",
+        "precioUnit": 56000,
+        "precioVPublico": 62355.14
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 69658,
+        "descripcion": "TORNILLO MICROMETRICO 25-50MM",
+        "precioUnit": 45752.36,
+        "precioVPublico": 55000
+    },
+    {
+        "cantidad": 11,
+        "categoria": "FERRETERIA",
+        "codigo": 7563,
+        "descripcion": "REGLA METALICA DE 300 MM",
+        "precioUnit": 740,
+        "precioVPublico": 955.5
+    },
+    {
+        "cantidad": 7,
+        "categoria": "FERRETERIA",
+        "codigo": 324,
+        "descripcion": "ESCUADRA MAGNETICA DE 3 PULGADAS",
+        "precioUnit": 2500,
+        "precioVPublico": 2945
+    },
+    {
+        "cantidad": 25,
+        "categoria": "FERRETERIA",
+        "codigo": 236,
+        "descripcion": "LIMA BASTARDA 8 PULGADAS",
+        "precioUnit": 2500,
+        "precioVPublico": 2950
+    },
+    {
+        "cantidad": 10,
+        "categoria": "FERRETERIA",
+        "codigo": 45876,
+        "descripcion": "MECHA ACERO RAPIDO 8MM",
+        "precioUnit": 942,
+        "precioVPublico": 1050
+    },
+    {
+        "cantidad": 11,
+        "categoria": "FERRETERIA",
+        "codigo": 45880,
+        "descripcion": "MECHA ACERO RAPIDO 10MM",
+        "precioUnit": 1200,
+        "precioVPublico": 1350
+    },
+    {
+        "cantidad": 16,
+        "categoria": "FERRETERIA",
+        "codigo": 85648,
+        "descripcion": "PINZA UNIVERSAL 8 PULGADAS",
+        "precioUnit": 1500,
+        "precioVPublico": 1600.25
+    },
+    {
+        "cantidad": 3,
+        "categoria": "FERRETERIA",
+        "codigo": 56537,
+        "descripcion": "PRENSA \"G\" 4 PULGADAS",
+        "precioUnit": 3000,
+        "precioVPublico": 4000
+    },
+    {
+        "cantidad": 333,
+        "categoria": "BULONERIA",
+        "codigo": 34343,
+        "descripcion": "TORNILLO PRISIONERO M8",
+        "precioUnit": 35,
+        "precioVPublico": 55
+    },
+    {
+        "cantidad": 13,
+        "categoria": "FERRETERIA",
+        "codigo": 45881,
+        "descripcion": "MECHA ACERO RAPIDO 10.5MM",
+        "precioUnit": 1250,
+        "precioVPublico": 1400
+    },
+    {
+        "cantidad": 100,
+        "categoria": "BULONERIA",
+        "codigo": 34344,
+        "descripcion": "TORNILLO PRISIONERO M10",
+        "precioUnit": 50,
+        "precioVPublico": 65
+    },
+    {
+        "cantidad": 12,
+        "categoria": "FERRETERIA",
+        "codigo": 45878,
+        "descripcion": "MECHA ACERO RAPIDO 6MM",
+        "precioUnit": 1250,
+        "precioVPublico": 1450
+    },
+    {
+        "cantidad": 4,
+        "categoria": "FERRETERIA",
+        "codigo": 345345,
+        "descripcion": "LLAVE PICO DE LORO 6 PLGADAS",
+        "precioUnit": 3000,
+        "precioVPublico": 3500
+    },
+    {
+        "cantidad": 100,
+        "categoria": "BULONERIA",
+        "codigo": 2,
+        "descripcion": "TORNILLO FIX 5X55MM",
+        "precioUnit": 23,
+        "precioVPublico": 25
+    },
+    {
+        "cantidad": 990,
+        "categoria": "BULONERIA",
+        "codigo": 999,
+        "descripcion": "PRODUCTO",
+        "precioUnit": 2,
+        "precioVPublico": 2
+    },
+    {
+        "cantidad": 200,
+        "categoria": "BULONERIA",
+        "codigo": 1234567,
+        "descripcion": "TORNILLO FIX 3X16MM",
+        "precioUnit": 12,
+        "precioVPublico": 15
+    },
+    {
+        "cantidad": 4,
+        "categoria": "FERRETERIA",
+        "codigo": 1234565,
+        "descripcion": "LLAVE INGLESA DE 10 PULGADAS",
+        "precioUnit": 2500,
+        "precioVPublico": 3000
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 23,
+        "descripcion": "PINZA DE PUNTA RECTA 6 PULGADAS",
+        "precioUnit": 5500,
+        "precioVPublico": 7000
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 24,
+        "descripcion": "PINZA CRIMPEADORA TERMINALES TIFF 0-16MM",
+        "precioUnit": 20000,
+        "precioVPublico": 24570
+    },
+    {
+        "cantidad": 200,
+        "categoria": "BULONERIA",
+        "codigo": 25,
+        "descripcion": "TUERCA M8 DUREZA 8",
+        "precioUnit": 12,
+        "precioVPublico": 15
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 26,
+        "descripcion": "JUEGO DE LLAVES ALLEN MILIMETRICAS",
+        "precioUnit": 10000,
+        "precioVPublico": 12000
+    },
+    {
+        "cantidad": 92,
+        "categoria": "BULONERIA",
+        "codigo": 22,
+        "descripcion": "TUERCA CASTILLO M10",
+        "precioUnit": 50,
+        "precioVPublico": 60
+    },
+    {
+        "cantidad": 2,
+        "categoria": "FERRETERIA",
+        "codigo": 25642,
+        "descripcion": "ARCO DE SIERRA",
+        "precioUnit": 5000,
+        "precioVPublico": 6000
+    },
+    {
+        "cantidad": 1,
+        "categoria": "FERRETERIA",
+        "codigo": 35426,
+        "descripcion": "ESCUADRA CON SOMBRERO 150MM NORMA DIN",
+        "precioUnit": 7500,
+        "precioVPublico": 8365.4
+    },
+    {
+        "cantidad": 10,
+        "categoria": "FERRETERIA",
+        "codigo": 2323,
+        "descripcion": "PUNTA DE TRZAR DE WIDIA",
+        "precioUnit": 1200,
+        "precioVPublico": 1450
+    }
+]
